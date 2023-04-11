@@ -8,6 +8,13 @@ go settings:
     mouse_move(44, 91)
     mouse_click(0)
 
+# deletes selected messages
+message delete:
+    key(delete)
+    mouse_move(1069, 604)
+    sleep(300ms)
+    mouse_click(0)
+
 user change:
     mimic("go settings")
     sleep(250ms)

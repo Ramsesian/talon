@@ -6,6 +6,7 @@ word console: insert("console")
 word flatpack: insert("flatpak")
 word aline: insert("align")
 word git: insert("git")
+word clothes: insert("close")
 
 inside angle: user.insert_between("<", ">")
 inside scare: user.insert_between('"', '"')

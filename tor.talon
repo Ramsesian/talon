@@ -36,17 +36,6 @@ tab close: key(ctrl-w)
 
 go tab <user.number_key>: key("alt-{number_key}")
 
-go pirate:
-    mimic("search")
-    sleep(500ms)
-    insert("http://piratebayo3klnzokct3wt5yyxb2vpebbuyjl7m623iaxmqhsd52coid.onion/")
-    key(enter)
-
-go pirate new:
-    mimic("search new")
-    sleep(500ms)
-    insert("http://piratebayo3klnzokct3wt5yyxb2vpebbuyjl7m623iaxmqhsd52coid.onion/")
-    key(enter)
 
 pirate search:
     mouse_move(954, 520)
