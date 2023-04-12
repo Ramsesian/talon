@@ -1,11 +1,11 @@
 app: Anki
 -
-go decks: key(d)
-go add: key(a)
-go browse: key(b)
-go stats: key(t)
-go edit: key(e)
-go study: key(s) 
+go decks: "d"
+go add: "a"
+go browse: "b"
+go stats: "t"
+go edit: "e"
+go study: "s" 
     
 go answer: mouse_move(814, 1042)
 go answer reset: 
@@ -20,4 +20,4 @@ card change note: key(ctrl-shift-m)
 card change deck: key(ctrl-d)
 card delete: key(ctrl-delete)
 
-next: key(4)
+next: "4"

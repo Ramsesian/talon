@@ -1,23 +1,28 @@
-cool gap: insert(": ")
+# regular short hands
+cool gap: ": "
+forge: key(delete)
+daughter: ". "
 
-
-
-word console: insert("console")
-word flatpack: insert("flatpak")
-word aline: insert("align")
-word git: insert("git")
-word clothes: insert("close")
-
+# new insides
 inside angle: user.insert_between("<", ">")
 inside scare: user.insert_between('"', '"')
 inside slash: user.insert_between('/', '/')
 
-symbol long dash: insert("—")
+# word fixes
+word console: "console"
+word flatpack: "flatpak"
+word aline: "align"
+word git: "git"
+word clothes: "close"
+word misc: "misc"
 
-line spacer: key(enter:2 up)
-op dub arrow: insert(" => ")
-op arrow: insert(" -> ")
-    
-forge: key(delete)
-daughter: key(. space)
+# allow aces to new symbols
+symbol long dash: "—"
 
+# spacing commands
+dust line: key(enter:2 up)
+dust dub arrow: " => "
+dust arrow: " -> "
+dust <user.symbol_key>: " {symbol_key} "
+
+ 

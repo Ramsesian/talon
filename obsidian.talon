@@ -9,6 +9,21 @@ go forward: key(ctrl-alt-right)
 # text manipulation
 text bold: key(ctrl-b)
 insert comment: user.insert_between('%% ', ' %%')
+heading <number>: key("#:{number}")
+    
+
+# templates
+template note top:
+    user.template("---[enter]")
+    user.template("description: [enter]")
+    user.template("---[enter:2]")
+    user.template("Tags: [enter]")
+    user.template("Links: \[\[Index\]\][enter]")    
+    user.template("___[enter]")
+
+# tags
+tag primary: "#meta/primary "
+tag code: "#code "
 
 # window manipulation
 tab last: key(ctrl-shift-tab)
@@ -18,5 +33,5 @@ tab new: key(ctrl-t)
 
 
 # fold plug in commands
-fold all: key(alt-f)
-insert fold: insert("%% fold %%")
+fold all: key(alt-f )
+insert fold: "%% fold %%"

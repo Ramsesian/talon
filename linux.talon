@@ -38,59 +38,48 @@ tux open commandline:
 
 tux open tor:
     mimic("tux open commandline")
-    insert("flatpak run com.github.micahflee.torbrowser-launcher")
-    key(enter)
+    user.template("flatpak run com.github.micahflee.torbrowser-launcher[enter]")
 
 tux open torrent:
     mimic("tux open commandline")
-    insert("flatpak run org.qbittorrent.qBittorrent")
-    key(enter)
+    user.template("flatpak run org.qbittorrent.qBittorrent[enter]")
 
 tux open office: 
     mimic("tux open commandline")
-    insert("libreoffice")
-    key(enter)
+    user.template("libreoffice[enter]")
     
 tux open study:
     mimic("tux open commandline")
-    insert("flatpak run net.ankiweb.Anki")
-    key(enter)
+    user.template("flatpak run net.ankiweb.Anki[enter]")
 
 tux open code:  
     mimic("tux open commandline")
-    insert("code")
-    key(enter)
+    user.template("code[enter]")
 
 tux open obsidian:
     mimic("tux open commandline")
-    insert("flatpak run md.obsidian.Obsidian")
-    key(enter)
+    user.template("flatpak run md.obsidian.Obsidian[enter]")
 
 tux open discord:
     mimic("tux open commandline")
-    insert("flatpak run com.discordapp.Discord")
-    key(enter)
+    user.template("flatpak run com.discordapp.Discord[enter]")
 
 tux open telegram:
     mimic("tux open commandline")
-    insert("flatpak run org.telegram.desktop")
-    key(enter)
+    user.template("flatpak run org.telegram.desktop[enter]")
 
 # opens popular locations in code   
 code open assignment tracker:  
     mimic("tux open commandline")
-    insert("code my-stuff/scripts/assignment-tracker/")
-    key(enter)
+    user.template("code my-stuff/scripts/assignment-tracker/[enter]")
     
 code open talon:
     mimic("tux open commandline")
-    insert("code .talon")
-    key(enter)
+    user.template("code .talon[enter]")
 
 code open web:
     mimic("tux open commandline")
-    insert("code my-stuff/web/step-1/")
-    key(enter)
+    user.template("code my-stuff/web/step-1/[enter]")
 
 # dismisses the telegram notifications I occasionally get
 telegram dismiss:

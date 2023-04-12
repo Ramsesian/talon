@@ -7,12 +7,12 @@ show progress:
     sleep(1500ms)
     key(o:up)
 
-go full: key(f)
-go exit: key(q)
+go full: "f"
+go exit: "q"
 
 # navigation
-frame last: key(,)
-frame next: key(.)
+frame last: ","
+frame next: "."
 
 seek last: key(left)
 seek next: key(right)
@@ -23,36 +23,36 @@ minute next: key(up)
 # playback
 audio delay lower: key(ctrl--)
 audio delay upper: key(ctrl-+)
-mute switch: key(m)
+mute switch: "m"
 
-speed lower: key("[")
-speed upper: key("]")
+speed lower: "["
+speed upper: "]"
 
-contrast lower: key(1)
-contrast upper: key(2)
+contrast lower: "1"
+contrast upper: "2"
 
-brightness lower: key(3)
-brightness upper: key(4)
+brightness lower: "3"
+brightness upper: "4"
 
-gamma lower: key(5)
-gamma upper: key(6)
+gamma lower: "5"
+gamma upper: "6"
 
-saturation lower: key(7)
-saturation upper: key(8)
+saturation lower: "7"
+saturation upper: "8"
 
-volume lower: key(9)
-volume upper: key(0)
+volume lower: "9"
+volume upper: "0"
 
-zoom out: key(w)
-zoom in: key(e)
+zoom out: "w"
+zoom in: "e"
 
 # subtitles
-sub switch: key(v)
-sub last: key(shift-j)
-sub next: key(j)
+sub switch: "v"
+sub last: "J"
+sub next: "j"
 
-sub delay lower: key(x)
-sub delay upper: key(z)
+sub delay lower: "x"
+sub delay upper: "z"
 
-sub up: key(r)
-sub down: key(t)
+sub up: "r"
+sub down: "t"

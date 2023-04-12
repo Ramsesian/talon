@@ -1,51 +1,55 @@
 app: qutebrowser
 -
 # url related
-search: key(o)
-search new: key(O)
-follow: key(f)
-follow new: key(F)
-follow rapid: key(; r)
-follow yank: key(; y)
+search: "o"
+search new: "O"
+follow: "f"
+follow new: "F"
+follow rapid: ";r"
+follow yank: ";y"
 
 # address related
 address copy: key(y:2)
-address bar: key(g o)
-address bar new: key(g O)
-address paste: key(p p)
-address paste new: key(P p)
+address bar: "go"
+address bar new: "gO"
+address paste: key(p:2)
+address paste new: "Pp"
 
 # tab related
-tab next: key(J)
-tab last: key(K)
-tab move next: key(g J)
-tab move last: key(g K)
-tab clone: key(g C)
-tab detach: key(g D)
+tab next: "J"
+tab last: "K"
+tab move next: "gJ"
+tab move last: "gK"
+tab clone: "gC"
+tab detach: "gD"
 tab switch: key(ctrl-tab)
-tab restore: key(u)
-tab close: key(d)
+tab restore: "u"
+tab close: "d"
 go tab <user.number_key>: key("alt-{number_key}")
 
 # session related
-session save: key(: w space)
-session load: insert(":session-load ")
+session save: ":w "
+session load: ":session-load "
 
-go back: key(H)
-[go] forward: key(L)
-reload it: key(r)
+# zoom related
+zoom in: "+"
+zoom out: "-"
+zoom reset: "="
+
+# history related 
+go back: "H"
+[go] forward: "L"
+reload it: "r"
+
+# search related
+find: "/"
+find next: "n"
+find last: "N"
+find cancel: key(escape)
 
 # YouTube related
-YouTube home:
-    key(o)
-    insert("https://www.youtube.com/")
-    key(enter)
-
-YouTube home new:
-    key(O)
-    insert("https://www.youtube.com/")
-    key(enter)
-
+YouTube home: user.template("ohttps://www.youtube.com[enter]")
+YouTube home new: user.template("Ohttps://www.youtube.com[enter]")
 YouTube search:
     mouse_move(884, 123)
     mouse_click(0)
@@ -70,7 +74,3 @@ YouTube like:
 YouTube channel:
     mouse_move(132, 958)
     mouse_click(0)
-
-zoom in: key(+)
-zoom out: key(-)
-zoom reset: key(=)

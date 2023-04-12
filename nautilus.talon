@@ -7,33 +7,14 @@ into: key(enter)
 into new: key(shift-enter)
 into and close: key(shift-ctrl-down)
 into home: key(alt-home)
-into documents: 
-    insert("~/Documents")
-    key(enter)
 
-into downloads: 
-    insert("~/Downloads")
-    key(enter)
-
-into music: 
-    insert("~/Music")
-    key(enter)
-
-into pictures: 
-    insert("~/Pictures")
-    key(enter)
-
-into videos: 
-    insert("~/Videos")
-    key(enter)
-
-into talon: 
-    insert("~/my-stuff/talon")
-    key(enter)
-
-into my stuff: 
-    insert("~/my-stuff")
-    key(enter)
+into documents: user.template("~/Documents[enter]")
+into downloads: user.template("~/Downloads[enter]")
+into music: user.template("~/Music[enter]")
+into pictures: user.template("~/Pictures[enter]")
+into videos: user.template("~/Videos[enter]")
+into talon: user.template("~/my-stuff/talon[enter]")
+into my stuff: user.template("~/my-stuff[enter]")
 
 peek: key(right)
 depeek: key(left)

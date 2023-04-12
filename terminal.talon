@@ -5,44 +5,33 @@ app: cool-retro-term
 
 # terminal shortcuts
 term clear: key(ctrl-l)
+term last: key(up enter)
 
 # movement commands
-path change: insert("cd ")
-path last: key(c d space - enter)
-path list: key(l s space - l a h enter)
-path location: key(p w d enter)
-
+path change: "cd "
+path last: user.template("cd -[enter]")
+path list: user.template("ls - lah[enter]")
+path location: user.template("pwd[enter]")
 
 # bookmarked locations
-mark home: key(c d space ~ enter)
-mark my stuff: 
-    insert("cd ~/my-stuff/")
-    key(enter)
-
-mark web:
-    insert("cd ~/my-stuff/web")
-    key(enter)
-
+mark home: user.template("cd ~[enter]")
+mark my stuff: user.template("cd ~/my-stuff[enter]")
+mark web: user.template("cd ~/my-stuff/web[enter]")
 
 # git commands
-git stage: 
-    insert("git add .")
-    key(enter)
-
-git status: 
-    insert("git status")
-    key(enter)
-
-git commit:
+git status: user.template("git status[enter]")
+git stage: user.template("git add .[enter]")
+git push: user.template("git push origin master[enter]")
+git rollback: "git reset --soft HEAD~"
+git commit: 
     insert("git commit -m ")
     user.insert_between('"', '"')
 
-git push:
-    insert("git push origin master")
-    key(enter)
-
 # misc commands
-touch: insert("touch ")
-vim: insert("vim ")
-nahno: insert("nano ")
-which: insert("which ")
+touch: "touch "
+vim: "vim "
+nah no: "nano "
+which: "which "
+
+# runners
+python run: "python3 "
