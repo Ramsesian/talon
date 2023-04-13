@@ -55,8 +55,8 @@ find last: "N"
 find cancel: key(escape)
 
 # YouTube related
-tube home: user.template("ohttps://www.youtube.com[enter]")
-tube home new: user.template("Ohttps://www.youtube.com[enter]")
+tube home: user.template("oyou[enter]")
+tube home new: user.template("Oyou[enter]")
 tube search: user.move_click(884, 123)
 tube change user:
     user.move_click(1865, 118)

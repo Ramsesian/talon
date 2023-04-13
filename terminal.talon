@@ -21,6 +21,7 @@ mark web: user.template("cd ~/my-stuff/web[enter]")
 # git commands
 git status: user.template("git status[enter]")
 git stage: user.template("git add .[enter]")
+git add: "git add "
 git push: user.template("git push origin master[enter]")
 git rollback: "git reset --soft HEAD~"
 git commit: 
