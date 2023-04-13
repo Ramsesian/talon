@@ -1,5 +1,3 @@
 app: obs
 -
-recording switch:
-    mouse_move(1738, 916)
-    mouse_click(0)
+recording switch: user.move_click(1738, 916)

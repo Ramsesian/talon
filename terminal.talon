@@ -10,7 +10,7 @@ term last: key(up enter)
 # movement commands
 path change: "cd "
 path last: user.template("cd -[enter]")
-path list: user.template("ls - lah[enter]")
+path list: user.template("ls -lah[enter]")
 path location: user.template("pwd[enter]")
 
 # bookmarked locations

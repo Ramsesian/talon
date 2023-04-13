@@ -23,6 +23,14 @@ address paste new:
     edit.paste()
     key(enter)
 
+address paste new:
+    edit.copy()
+    mimic("address paste")  
+    
+address from selection new:
+    edit.copy()
+    mimic("address paste new")
+
 # tap related
 tab clone:
     mimic("address copy")
@@ -36,61 +44,71 @@ tab detach:
     edit.paste()
     key(enter)
 
-# YouTube related
-YouTube home: browser.go("https://www.youtube.com/")
-YouTube home new: 
+select element: key(ctrl-shift-c)
+
+# tube related
+tube home: browser.go("https://www.youtube.com")
+tube home new: 
     app.tab_open()
-    mimic("YouTube home")
+    mimic("tube home")
 
-YouTube search:
-    mouse_move(933, 181)
-    mouse_click(0)
+tube search: user.move_click(933, 181)
+tube change user: 
+    user.move_click(1864, 178)
+    user.move_click(1707, 412, 500)
 
-YouTube change user:
-    mouse_move(1864, 178)
-    mouse_click(0)
-    sleep(500ms)
-    mouse_move(1707, 412)
-    mouse_click(0)
+tube max: "f"
+tube min: key(escape space)
 
-YouTube max: key(f)
-YouTube min: key(escape space)
-
-YouTube like: 
-    mouse_move(1036, 1004)
-    mouse_click(0)
-
-YouTube channel:
-    mouse_move(134, 1004)
-    mouse_click(0)
+tube like: user.move_click(1036, 1004) 
+tube channel: user.move_click(134, 1004)
 
 # for evernote web clipper
-clipper show: insert("`")
-clipper cancel:
-    mouse_move(1863, 190)
-    mouse_click(0)
-
-clipper save: 
-    mouse_move(1739, 237)
-    mouse_click(0)
-
-clipper notebook:
-    mouse_move(1742, 545)
-    mouse_click(0)
+clipper show: "`"
+clipper cancel: user.move_click(1863, 190)
+clipper save: user.move_click(1739, 237) 
+clipper notebook: user.move_click(1742, 545)
 
 # for canvas
 school next: 
-    key(ctrl-end)
-    sleep(300ms)
-    mouse_move(1390, 1005)
-    mouse_click(0)
-
+    edit.file_end()
+    user.move_click(1000, 1000, 300)
+    
 school last:
-    key(ctrl-end)
-    sleep(300ms) 
-    mouse_move(364, 1015)
-    mouse_click(0)
+    edit.file_end()
+    user.move_click(364, 1015, 300)
 
+school quiz start:
+    user.move_click(723, 670)
+    mimic("drowse")
+
+school quiz end: user.move_click(1074, 994)
+
+school expose one:
+    mimic("select element")
+    mouse_move(727, 713)
+    sleep(100ms)
+    mouse_click(0)
+    user.move_click(1586, 243)
+    sleep(100ms)
+    edit.page_up()
+    
+school expose two:
+    mimic("duke")
+    edit.copy()
+    app.tab_open()
+    edit.paste()
+    key(enter)
+    sleep(4s)
+    mimic("clipper show")
+    sleep(2s)
+    mimic("clipper save")
+
+school expose three:
+    user.tab_close_wrapper()
+    user.move_click(1258, 977, 500)
+    edit.file_end()
+    user.move_click(1214, 1012, 300)
 
 # yomisan's definition
 show definition:
@@ -99,8 +117,7 @@ show definition:
     key(shift:up)
 
 word lookup:
-    mouse_move(922, 267)
-    mouse_click(0)
+    user.move_click(922, 267)
     mimic("select all")
     edit.paste()
     key(enter)

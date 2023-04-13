@@ -2,15 +2,9 @@ os: linux
 -
 keyboard switch: key(super-space)
 keyboard change input:
-    mouse_move(1757, 17)
-    mouse_click(0)
-    sleep(200ms)
-    mouse_move(1739, 156)
-    mouse_click(0)
-    sleep(200ms)
-    mouse_move(1749, 231)
-    mouse_click(0)
-    sleep(200ms)
+    user.move_click(1757, 17)
+    user.move_click(1739, 156, 200)
+    user.move_click(1749, 231, 200)
 
 tux search: key(super)
 tux lock: key(super-escape)
@@ -82,6 +76,4 @@ code open web:
     user.template("code my-stuff/web/step-1/[enter]")
 
 # dismisses the telegram notifications I occasionally get
-telegram dismiss:
-    mouse_move(1899, 1013)
-    mouse_click(0)
+telegram dismiss: move_click(1899, 1013)

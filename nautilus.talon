@@ -35,9 +35,7 @@ location copy:
 
 open in term:
     key(f10)
-    mouse_move(1248, 242)
-    sleep(400ms)
-    mouse_click(0)
+    user.move_click(1248, 242, 400)
 
 reload it: key(f5)
 file delete: key(delete)

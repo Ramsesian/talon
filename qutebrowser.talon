@@ -14,6 +14,13 @@ address bar: "go"
 address bar new: "gO"
 address paste: key(p:2)
 address paste new: "Pp"
+address from selection:()
+    edit.copy()
+    mimic("address paste")
+
+address from selection new:
+    edit.copy()
+    mimic("address paste new")
 
 # tab related
 tab next: "J"
@@ -48,29 +55,15 @@ find last: "N"
 find cancel: key(escape)
 
 # YouTube related
-YouTube home: user.template("ohttps://www.youtube.com[enter]")
-YouTube home new: user.template("Ohttps://www.youtube.com[enter]")
-YouTube search:
-    mouse_move(884, 123)
-    mouse_click(0)
-    
-YouTube change user:
-    mouse_move(1865, 118)
-    mouse_click(0)
-    sleep(500ms)
-    mouse_move(1681, 351)
-    mouse_click(0)
+tube home: user.template("ohttps://www.youtube.com[enter]")
+tube home new: user.template("Ohttps://www.youtube.com[enter]")
+tube search: user.move_click(884, 123)
+tube change user:
+    user.move_click(1865, 118)
+    user.move_click(1681, 351, 500)
 
-YouTube skip:
-    mouse_move(1332, 784)
-    mouse_click(0)
-
-YouTube max: key(i f escape)
-YouTube min: key(escape space)
-YouTube like: 
-    mouse_move(822, 959)
-    mouse_click(0)
-
-YouTube channel:
-    mouse_move(132, 958)
-    mouse_click(0)
+tube skip: user.move_click(1332, 784)
+tube max: key(i f escape)
+tube min: key(escape space)
+tube like: user.move_click(822, 959) 
+tube channel: user.move_click(132, 958)

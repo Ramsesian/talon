@@ -1,19 +1,12 @@
 app: TelegramDesktop
 -
-go saved:
-    mouse_move(273, 181)
-    mouse_click(0)
-
-go settings:
-    mouse_move(44, 91)
-    mouse_click(0)
+go saved: user.move_click(273, 181)
+go settings: user.move_click(44, 91)
 
 # deletes selected messages
 message delete:
     key(delete)
-    mouse_move(1069, 604)
-    sleep(300ms)
-    mouse_click(0)
+    user.move_click(1069, 604, 300)
 
 user change:
     mimic("go settings")
