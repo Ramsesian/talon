@@ -15,6 +15,7 @@ word aline: "align"
 word git: "git"
 word clothes: "close"
 word misc: "misc"
+dot tzo: ".tzo" 
 
 # allow aces to new symbols
 symbol long dash: "—"

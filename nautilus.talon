@@ -6,19 +6,33 @@ go into: key(enter)
 go into top: key(home enter)
 go into bottom: key(end enter)
 go into new: key(shift-enter)
+
+go from bottom [<number>]:
+    amount = number or 1
+    amount = amount - 1
+    key(end)
+    key("up:{amount}")
+
+go from top [<number>]:
+    amount = number or 1
+    amount = amount - 1
+    key(home)
+    key("down:{amount}")
+
 peek: key(right)
 depeek: key(left)
 
+
 # bookmarks
 mark home: key(alt-home)
-mark documents: user.template("~/Documents[enter]")
-mark downloads: user.template("~/Downloads[enter]")
-mark music: user.template("~/Music[enter]")
-mark pictures: user.template("~/Pictures[enter]")
-mark videos: user.template("~/Videos[enter]")
-mark talon: user.template("~/my-stuff/talon[enter]")
-mark my stuff: user.template("~/my-stuff[enter]")
-mark telegram: user.template("~/Downloads/Telegram Desktop[enter]")
+mark documents: """~/Documents\n"""
+mark downloads: """~/Downloads\n"""
+mark music: """~/Music\n"""
+mark pictures: """~/Pictures\n"""
+mark videos: """~/Videos\n"""
+mark talon: """~/my-stuff/talon\n"""
+mark my stuff: """~/my-stuff\n"""
+mark telegram: """~/Downloads/Telegram Desktop\n"""
 
 # file commands
 folder new: key(shift-ctrl-n)

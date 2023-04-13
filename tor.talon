@@ -34,7 +34,7 @@ tab last: key(ctrl-shift-tab)
 tab next: key(ctrl-tab)
 tab close: key(ctrl-w)
 
-go tab <user.number_key>: key("alt-{number_key}")
+go tab <number>: key("alt-{number}")
 
 
 pirate search:
@@ -44,6 +44,4 @@ pirate search:
 pirate get magnet:
     mouse_move(579, 786)
     mouse_click(1)
-    sleep(200ms)
-    mouse_move(594, 896)
-    mouse_click(0)
+    move_click(594, 896, 200)

@@ -32,48 +32,48 @@ tux open commandline:
 
 tux open tor:
     mimic("tux open commandline")
-    user.template("flatpak run com.github.micahflee.torbrowser-launcher[enter]")
+    auto_insert("flatpak run com.github.micahflee.torbrowser-launcher\n")
 
 tux open torrent:
     mimic("tux open commandline")
-    user.template("flatpak run org.qbittorrent.qBittorrent[enter]")
+    auto_insert("flatpak run org.qbittorrent.qBittorrent\n")
 
 tux open office: 
     mimic("tux open commandline")
-    user.template("libreoffice[enter]")
+    auto_insert("libreoffice\n")
     
 tux open study:
     mimic("tux open commandline")
-    user.template("flatpak run net.ankiweb.Anki[enter]")
+    auto_insert("flatpak run net.ankiweb.Anki\n")
 
 tux open code:  
     mimic("tux open commandline")
-    user.template("code[enter]")
+    auto_insert("code\n")
 
 tux open obsidian:
     mimic("tux open commandline")
-    user.template("flatpak run md.obsidian.Obsidian[enter]")
+    auto_insert("flatpak run md.obsidian.Obsidian\n")
 
 tux open discord:
     mimic("tux open commandline")
-    user.template("flatpak run com.discordapp.Discord[enter]")
+    auto_insert("flatpak run com.discordapp.Discord\n")
 
 tux open telegram:
     mimic("tux open commandline")
-    user.template("flatpak run org.telegram.desktop[enter]")
+    auto_insert("flatpak run org.telegram.desktop\n")
 
 # opens popular locations in code   
 code open assignment tracker:  
     mimic("tux open commandline")
-    user.template("code my-stuff/scripts/assignment-tracker/[enter]")
+    auto_insert("code my-stuff/scripts/assignment-tracker/\n")
     
 code open talon:
     mimic("tux open commandline")
-    user.template("code .talon[enter]")
+    auto_insert("code .talon\n")
 
 code open web:
     mimic("tux open commandline")
-    user.template("code my-stuff/web/step-1/[enter]")
+    auto_insert("code ~/my-stuff/web/step-1/\n")
 
 # dismisses the telegram notifications I occasionally get
 telegram dismiss: move_click(1899, 1013)

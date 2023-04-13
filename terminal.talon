@@ -9,20 +9,20 @@ term last: key(up enter)
 
 # movement commands
 path change: "cd "
-path last: user.template("cd -[enter]")
-path list: user.template("ls -lah[enter]")
-path location: user.template("pwd[enter]")
+path last: """cd -\n"""
+path list: """ls -lah\n"""
+path location: """pwd\n"""
 
 # bookmarked locations
-mark home: user.template("cd ~[enter]")
-mark my stuff: user.template("cd ~/my-stuff[enter]")
-mark web: user.template("cd ~/my-stuff/web[enter]")
+mark home: """cd ~\n"""
+mark my stuff: """cd ~/my-stuff\n"""
+mark web: """cd ~/my-stuff/web\n"""
 
 # git commands
-git status: user.template("git status[enter]")
-git stage: user.template("git add .[enter]")
+git status: """git status\n"""
+git stage: """git add .\n"""
 git add: "git add "
-git push: user.template("git push origin master[enter]")
+git push: """git push origin master\n"""
 git rollback: "git reset --soft HEAD~"
 git commit: 
     insert("git commit -m ")
@@ -33,6 +33,9 @@ touch: "touch "
 vim: "vim "
 nah no: "nano "
 which: "which "
+
+# apack
+pack: "apack "
 
 # runners
 python run: "python3 "

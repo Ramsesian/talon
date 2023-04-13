@@ -9,18 +9,13 @@ follow rapid: ";r"
 follow yank: ";y"
 
 # address related
-address copy: key(y:2)
+address copy: "yy"
 address bar: "go"
 address bar new: "gO"
-address paste: key(p:2)
+address paste: "pp"
 address paste new: "Pp"
-address from selection:()
-    edit.copy()
-    mimic("address paste")
-
-address from selection new:
-    edit.copy()
-    mimic("address paste new")
+address from selection: key(ctrl-c p:2)
+address from selection new: key(ctrl-c P p)
 
 # tab related
 tab next: "J"
@@ -32,7 +27,7 @@ tab detach: "gD"
 tab switch: key(ctrl-tab)
 tab restore: "u"
 tab close: "d"
-go tab <user.number_key>: key("alt-{number_key}")
+go tab <number>: key("alt-{number}")
 
 # session related
 session save: ":w "
@@ -55,8 +50,8 @@ find last: "N"
 find cancel: key(escape)
 
 # YouTube related
-tube home: user.template("oyou[enter]")
-tube home new: user.template("Oyou[enter]")
+tube home: """oyou\n"""
+tube home new: """Oyou\n"""
 tube search: user.move_click(884, 123)
 tube change user:
     user.move_click(1865, 118)

@@ -13,13 +13,16 @@ heading <number>: key("#:{number}")
     
 
 # templates
-template note top:
-    user.template("---[enter]")
-    user.template("description: [enter]")
-    user.template("---[enter:2]")
-    user.template("Tags: [enter]")
-    user.template("Links: \[\[Index\]\][enter]")    
-    user.template("___[enter]")
+template note top: 
+    """
+    ---
+    description: 
+    ---
+
+    Tags: 
+    Links: [[Index]]
+    ___
+    """
 
 # tags
 tag primary: "#meta/primary "
