@@ -2,10 +2,7 @@ app: mpv
 -
 
 # base commands
-show progress:
-    key(o:down)
-    sleep(1500ms)
-    key(o:up)
+show progress: user.hold_key("o", 1500)
 
 go full: "f"
 go exit: "q"

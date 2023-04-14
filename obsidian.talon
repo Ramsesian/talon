@@ -9,7 +9,11 @@ go forward: key(ctrl-alt-right)
 # text manipulation
 text bold: key(ctrl-b)
 insert comment: user.insert_between('%% ', ' %%')
-heading <number>: key("#:{number}")
+insert ordered: "1. "
+insert unordered: "- "
+insert location: key("right ( ctrl-v )")
+    
+heading <number>: key("#:{number} space")
     
 
 # templates
@@ -36,5 +40,5 @@ tab new: key(ctrl-t)
 
 
 # fold plug in commands
-fold all: key(alt-f )
+fold all: key(alt-f)
 insert fold: "%% fold %%"

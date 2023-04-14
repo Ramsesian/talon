@@ -5,13 +5,25 @@ mod = Module()
 
 @mod.action_class
 class interperate:
-    def move_click(x: int, y: int, sleep: int = 0):
+    def move_click(x: int, y: int, click: bool = True, sleep: int = 0):
         """moves and then clicks"""
-        if sleep > 0:
-            actions.sleep(f"{sleep}ms")
         ctrl.mouse_move(x, y)
-        ctrl.mouse_click(0)
-    
+        if sleep > 0: actions.sleep(f"{sleep}ms")
+        if click: ctrl.mouse_click(0)
+
+    def mouse_relative(x: int, y: int, click: bool = True, sleep: int = 0):
+        """like move_click but it moves relative to the current position"""
+        last_x, last_y = ctrl.mouse_pos()
+        ctrl.mouse_move(last_x + x, last_y + y)
+        if sleep > 0: actions.sleep(f"{sleep}ms")
+        if click: ctrl.mouse_click(0)
+
+    def hold_key(key: str, sleep: int):
+        """the key is held down for the specified amount of time"""
+        actions.key(f"{key}:down")
+        actions.sleep(f"{sleep}ms")
+        actions.key(f"{key}:up")
+        
     def template(interpreted: str):
         """the string is passed to an insert while everything inside curly brackets are passed to a key4"""
         
@@ -28,11 +40,7 @@ class interperate:
             
             actions.insert(re.sub(r"\\(?=\[|\])", "", x)) # removes the backslashes that are escaping the squares if any
 
-    #def gamer():
-     #   actions.insert("test")
-        #actions.sleep(f"{sleep}ms")
-        #ctrl.mouse_move(100, 100)
-        #ctrl.mouse_click(0)
+
 
 
 

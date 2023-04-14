@@ -10,14 +10,12 @@ go into new: key(shift-enter)
 go from bottom [<number>]:
     amount = number or 1
     amount = amount - 1
-    key(end)
-    key("up:{amount}")
+    key("end up:{amount}")
 
 go from top [<number>]:
     amount = number or 1
     amount = amount - 1
-    key(home)
-    key("down:{amount}")
+    key("home down:{amount}")
 
 peek: key(right)
 depeek: key(left)
@@ -38,7 +36,6 @@ mark telegram: """~/Downloads/Telegram Desktop\n"""
 folder new: key(shift-ctrl-n)
 file delete: key(delete)
 file rename: key(f2)
-file trash: key(delete)
 
 # window commands
 reload it: key(f5)
@@ -53,7 +50,4 @@ search location: key(ctrl-alt-o)
 
 # misc
 redo that: key(shift-ctrl-z)
-location copy: 
-    key(ctrl-l)
-    edit.copy()
-    key(escape)
+location copy: key(ctrl-l ctrl-c escape)

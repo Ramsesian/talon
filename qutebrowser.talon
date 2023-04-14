@@ -8,14 +8,14 @@ follow new: "F"
 follow rapid: ";r"
 follow yank: ";y"
 
-# address related
-address copy: "yy"
-address bar: "go"
-address bar new: "gO"
-address paste: "pp"
-address paste new: "Pp"
-address from selection: key(ctrl-c p:2)
-address from selection new: key(ctrl-c P p)
+# URL related
+location yank: "yy"
+location bar: "go"
+location bar new: "gO"
+location paste: "pp"
+location paste new: "Pp"
+location from selection: key(ctrl-c p:2)
+location from selection new: key(ctrl-c P p)
 
 # tab related
 tab next: "J"

@@ -13,8 +13,8 @@ user change:
     sleep(250ms)
     mouse_move(122, 263)
     mouse_drag(0)
-    mouse_move(158, 227)
+    user.move_click(158, 227, 100)
     sleep(100ms)
     mouse_click(0)
-    sleep(100ms)
-    mouse_click(0)
+
+test: user.mouse_relative(10, 10,"True", 5000)
