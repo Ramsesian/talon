@@ -2,8 +2,9 @@ app: Soffice
 app: libreoffice-startcenter
 app: libreoffice-writer
 -
-# 
-# actions under the toolbar
+#################################
+#### INSIDE THE FILE SECTION ####
+#################################
 go file: user.go_file()
 go file new:
     user.go_file()
@@ -14,9 +15,11 @@ go export as:
     user.go_file()
     user.tool_into(15)
 
-export as p d f:
+export as pdf:
     mimic("go export as")
     key(enter)
+    mouse_move(1294, 838)
+
 ###################################
 #### INSIDE THE INSERT SECTION ####
 ###################################
@@ -34,6 +37,7 @@ insert formula: key(alt-ctrl-=)
 insert special character:
     mimic("go insert")
     user.tool_select(17)
+
 ####################################
 #### INSIDE THE FORMAT SECTION ####
 ####################################
@@ -81,7 +85,6 @@ toggle unordered list: key(shift-f12)
 go page style:
     user.go_format()
     user.tool_select(10)
-
 
 #################################
 #### INSIDE THE HELP SECTION ####

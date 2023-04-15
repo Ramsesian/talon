@@ -36,12 +36,9 @@ tab close: key(ctrl-w)
 
 go tab <number>: key("alt-{number}")
 
-
-pirate search:
-    mouse_move(954, 520)
-    mouse_click(0)
-
+go pirate: user.move_click(252, 138)
+pirate search: user.move_click(954, 520)
 pirate get magnet:
     mouse_move(579, 786)
     mouse_click(1)
-    move_click(594, 896, 200)
+    user.mouse_relative(50, 110, 200)

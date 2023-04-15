@@ -54,8 +54,8 @@ tube home: """oyou\n"""
 tube home new: """Oyou\n"""
 tube search: user.move_click(884, 123)
 tube change user:
-    user.move_click(1865, 118)
-    user.move_click(1681, 351, 500)
+    user.move_click(1850, 120)
+    user.mouse_relative(0, 230, 500)
 
 tube skip: user.move_click(1332, 784)
 tube max: key(i f escape)

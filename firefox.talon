@@ -33,13 +33,13 @@ tab detach:
 
 select element: key(ctrl-shift-c)
 
-# tube related
+# youtube related
 tube home: browser.go("https://youtube.com")
 tube home new: user.template("[ctrl-t]https://youtube.com[enter]")
 tube search: user.move_click(933, 181)
 tube change user: 
     user.move_click(1864, 178)
-    user.move_click(1707, 412, 500)
+    user.mouse_relative(0, 230, 500)
 
 tube max: "f"
 tube min: key(escape space)
@@ -85,9 +85,10 @@ school expose two:
 
 school expose three:
     user.tab_close_wrapper()
-    user.move_click(1258, 977, 500)
+    user.move_click(1264, 1008, 500)
+    sleep(100ms)
     edit.file_end()
-    user.move_click(1214, 1012, 300)
+    user.mouse_relative(-30, 0)
 
 # yomisan's definition
 show definition: user.hold_key("shift", 100)

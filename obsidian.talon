@@ -11,6 +11,7 @@ text bold: key(ctrl-b)
 insert comment: user.insert_between('%% ', ' %%')
 insert ordered: "1. "
 insert unordered: "- "
+insert line: "___"
 insert location: key("right ( ctrl-v )")
     
 heading <number>: key("#:{number} space")

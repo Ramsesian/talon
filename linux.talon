@@ -1,10 +1,11 @@
 os: linux
 -
 keyboard switch: key(super-space)
+#TODO CHANGE FINISH FIXING THIS
 keyboard change input:
     user.move_click(1757, 17)
-    user.move_click(1739, 156, 200)
-    user.move_click(1749, 231, 200)
+    sleep(200ms)
+    key(down:3 right down enter)
 
 tux search: key(super)
 tux lock: key(super-escape)
@@ -15,7 +16,8 @@ tux shift down: key(shift-super-down)
 tux rotate: key(super-o)
 
 tux focus <user.arrow_key>: key("super-{arrow_key}")
-tux switch: key(super-m)
+tux focus max: key(super-m)
+tux full: key(f11)
 
 # app runners
 # alt-f2  opens the command runner
