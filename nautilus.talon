@@ -2,9 +2,19 @@ app: Org.gnome.Nautilus
 -
 # movement commands
 go back: key(backspace)
-go into: key(enter)
-go into top: key(home enter)
-go into bottom: key(end enter)
+go into: 
+    key(enter)
+    sleep(200ms)
+    key(down)
+
+go into top: 
+    key(home)
+    mimic("go into")
+
+go into bottom: 
+    key(end)
+    mimic("go into")
+
 go into new: key(shift-enter)
 
 go from bottom [<number>]:
@@ -20,17 +30,18 @@ go from top [<number>]:
 peek: key(right)
 depeek: key(left)
 
-
 # bookmarks
 mark home: key(alt-home)
-mark documents: """~/Documents\n"""
-mark downloads: """~/Downloads\n"""
-mark music: """~/Music\n"""
-mark pictures: """~/Pictures\n"""
-mark videos: """~/Videos\n"""
-mark talon: """~/my-stuff/talon\n"""
-mark my stuff: """~/my-stuff\n"""
-mark telegram: """~/Downloads/Telegram Desktop\n"""
+mark documents: user.template("~/Documents[enter down]")
+mark downloads: user.template("~/Downloads[enter down]")
+mark telegram:  user.template("~/Downloads/Telegram Desktop[enter down]")
+mark music:     user.template("~/Music[enter down]")
+mark pictures:  user.template("~/Pictures[enter down]")
+mark videos:    user.template("~/Videos[enter down]")
+mark trash:     user.template("trash:///[enter down]")
+mark my stuff:  user.template("~/my-stuff[enter down]")
+mark talon:     user.template("~/my-stuff/talon[enter down]")
+mark web:       user.template("~/my-stuff/web[enter down]")
 
 # file commands
 folder new: key(shift-ctrl-n)
@@ -44,10 +55,10 @@ open in term:
     key(f10)
     user.move_click(1248, 242, 400)
 
-# search
-search: key(ctrl-3)
-search location: key(ctrl-alt-o)
-
 # misc
 redo that: key(shift-ctrl-z)
-location copy: key(ctrl-l ctrl-c escape)
+location yank: key(ctrl-l ctrl-c escape)
+
+# right click menu actions
+open menu: mouse_click(1)
+open with other application: key(down:2 enter)

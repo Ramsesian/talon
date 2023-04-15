@@ -36,7 +36,7 @@ class interperate:
                 actions.key(temp[0])
                 x = temp[1]
             
-            actions.insert(re.sub(r"\\(?=\[|\])", "", x)) # removes the backslashes that are escaping the squares if any
+            actions.auto_insert(re.sub(r"\\(?=\[|\])", "", x)) # removes the backslashes that are escaping the squares if any
 
 
 
