@@ -7,6 +7,7 @@ daughter: ". "
 inside angle: user.insert_between("<", ">")
 inside scare: user.insert_between('"', '"')
 inside slash: user.insert_between('/', '/')
+inside dock string: user.insert_between('"""', '"""')
 
 # word fixes
 word console: "console"

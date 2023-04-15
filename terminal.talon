@@ -28,6 +28,9 @@ git commit:
     insert("git commit -m ")
     user.insert_between('"', '"')
 
+# package manager commands
+package upgrade: """sudo nala upgrade\n"""
+
 # misc commands
 touch: "touch "
 vim: "vim "
