@@ -62,10 +62,6 @@ school last:
     edit.file_end()
     user.move_click(364, 1015, 300)
 
-school quiz start:
-    user.move_click(723, 670)
-    mimic("talon sleep")
-
 school quiz end: user.move_click(1074, 994)
 
 school expose one:

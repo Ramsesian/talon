@@ -19,7 +19,7 @@ mark home:       """cd ~\n"""
 mark talon home: """cd ~/.talon/user\n"""
 mark talon user: """cd ~/.talon/user/my_custom\n"""
 mark documents:  """cd ~/Documents\n"""
-mark obsidian:   """cd ~/Documents/obsidian/General"""
+mark obsidian:   """cd ~/Documents/obsidian/General\n"""
 mark my stuff:   """cd ~/my-stuff\n"""
 mark web:        """cd ~/my-stuff/web\n"""
 

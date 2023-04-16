@@ -9,6 +9,11 @@ keyboard change input:
 
 tux search: key(super)
 tux lock: key(super-escape)
+tux menu: user.move_click(1860, 12)
+tux shutdown:
+    mimic("tux menu")
+    sleep(200ms)
+    key(down:9 right down:2)
 tux up: key(ctrl-super-up)
 tux down: key(ctrl-super-down)
 tux shift up: key(shift-super-up)
