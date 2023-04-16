@@ -1,6 +1,7 @@
 app: Gnome-terminal
 app: Code
 app: cool-retro-term
+app: Kgx
 -
 
 # terminal shortcuts
@@ -34,13 +35,15 @@ git commit: user.template('git commit -m ""[left]')
 # package manager commands
 package upgrade: """sudo nala upgrade\n"""
 
-# misc commands
+# common commands
 touch: "touch "
 vim: "vim "
 nah no: "nano "
 which: "which "
 ch mod: "chmod "
-g orse: "gource"
+
+# misc commands
+g orse: """gource\n"""
 
 # apack
 a pack: "apack "
