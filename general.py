@@ -1,5 +1,4 @@
 from talon import Module, actions, ctrl
-
 import re
 mod = Module()
 
