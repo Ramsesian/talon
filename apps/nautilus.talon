@@ -17,12 +17,12 @@ go into bottom:
 
 go into new: key(shift-enter)
 
-go from bottom [<number>]:
+go [<number>] from bottom:
     amount = number or 1
     amount = amount - 1
     key("end up:{amount}")
 
-go from top [<number>]:
+go [<number>] from top:
     amount = number or 1
     amount = amount - 1
     key("home down:{amount}")

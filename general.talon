@@ -26,8 +26,8 @@ symbol long dash: "—"
 
 # spacing commands
 dust line: key(enter:2 up)
-dust dub arrow: " => "
+dust fat arrow: " => "
 dust arrow: " -> "
-dust dub equal[s]: " == "
-dust strict equal[s]: " === "
+dust match: " == "
+dust strict match: " === "
 dust <user.symbol_key>: " {symbol_key} "

@@ -80,7 +80,7 @@ code open talon:
 
 code open web:
     mimic("tux open commandline")
-    auto_insert("code ~/my-stuff/web/step-1/\n")
+    auto_insert("code /home/rowan/my-stuff/web/\n")
 
 # dismisses the telegram notifications I occasionally get
 telegram dismiss: move_click(1899, 1013)

@@ -4,9 +4,22 @@ go saved: user.move_click(273, 181)
 go settings: user.move_click(44, 91)
 
 # deletes selected messages
-message delete:
+message confirm delete: 
+    sleep(300ms)
+    key(enter)
+
+message selection delete:
     key(delete)
-    user.move_click(1069, 604, 300)
+    mimic("message confirm delete")
+
+message delete:
+    mouse_click(1)
+    user.mouse_relative(20, 185)
+    mimic("message confirm delete")
+
+message edit:
+    mouse_click(1)
+    user.mouse_relative(20, 50)
 
 change user:
     mimic("go settings")

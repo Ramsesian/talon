@@ -10,6 +10,7 @@ follow yank: ";y"
 
 # URL related
 location yank: "yy"
+location markdown: "ym"
 location bar: "go"
 location bar new: "gO"
 location paste: "pp"
@@ -44,7 +45,7 @@ go back: "H"
 reload it: "r"
 
 # search related
-find: "/"
+find new: "/"
 find next: "n"
 find last: "N"
 find cancel: key(escape)
