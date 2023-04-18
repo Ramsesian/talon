@@ -7,6 +7,7 @@ app: Kgx
 # terminal shortcuts
 term clear: key(ctrl-l)
 term last: key(up enter)
+term copy: key(ctrl-shift-c)
 
 # movement commands
 path change: "cd "
@@ -23,7 +24,15 @@ mark obsidian:   """cd ~/Documents/obsidian/General\n"""
 mark my stuff:   """cd ~/my-stuff\n"""
 mark web:        """cd ~/my-stuff/web\n"""
 
+# common commands
+touch: "touch "
+vim: "vim "
+nah no: "nano "
+which: "which "
+ch mod: "chmod "
+
 # git commands
+git init: "git init"
 git status: """git status\n"""
 git stage: """git add .\n"""
 git add: "git add "
@@ -35,19 +44,18 @@ git commit: user.template('git commit -m ""[left]')
 # package manager commands
 package upgrade: """sudo nala upgrade\n"""
 
-# common commands
-touch: "touch "
-vim: "vim "
-nah no: "nano "
-which: "which "
-ch mod: "chmod "
-
-# misc commands
-g orse: """gource\n"""
-
 # apack
 a pack: "apack "
+
+# flatpak commands
+flatpak list: """flatpak list\n"""
+
+# npm commands
+nodemon: "nodemon "
 
 # runners
 shell run: "sh "
 python run: "python3 "
+
+# misc commands
+g orse: """gource\n"""

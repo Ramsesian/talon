@@ -3,6 +3,10 @@ forge: key(delete)
 where: key(backspace)
 daughter: ". "
 cool gap: ": "
+pad right: key(space left)
+replace [<number>]:
+    remove = number or 1
+    key("backspace:{remove} space")
 
 # new insides
 inside angle: user.insert_between("<", ">")
@@ -12,7 +16,6 @@ inside dock string: user.insert_between('"""', '"""')
 
 # word fixes
 word console: "console"
-word flatpack: "flatpak"
 word aline: "align"
 word git: "git"
 word clothes: "close"
@@ -30,4 +33,5 @@ dust fat arrow: " => "
 dust arrow: " -> "
 dust match: " == "
 dust strict match: " === "
+dust <user.letter>: " {letter} "
 dust <user.symbol_key>: " {symbol_key} "

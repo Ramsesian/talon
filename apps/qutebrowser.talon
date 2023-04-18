@@ -50,6 +50,9 @@ find next: "n"
 find last: "N"
 find cancel: key(escape)
 
+# miscellaneous commands
+pass <user.letter>: key("i {letter} escape")
+
 # YouTube related
 tube home: """oyou\n"""
 tube home new: """Oyou\n"""

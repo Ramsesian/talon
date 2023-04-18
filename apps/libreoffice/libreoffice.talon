@@ -2,6 +2,17 @@ app: Soffice
 app: libreoffice-startcenter
 app: libreoffice-writer
 -
+##############################
+#### NOT INSIDE A SECTION ####
+##############################
+go font[s]: user.move_click(425, 158)
+go font size: 
+    user.move_click(473, 158)
+    key(ctrl-a)
+go document: user.move_click(908, 636)
+
+
+insert squared: key(shift-ctrl-p 2 shift-ctrl-p)
 #################################
 #### INSIDE THE FILE SECTION ####
 #################################

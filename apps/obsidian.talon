@@ -23,11 +23,6 @@ insert unordered: "- "
 insert admonition: "> [!note]- "
 insert admonition important: "> [!important]- "
 
-# tags
-tag primary: "#meta/primary "
-tag code:    "#code "
-tag linux:   "#os/linux"
-
 # window manipulation
 tab last: key(ctrl-shift-tab)
 tab next: key(ctrl-tab)
@@ -53,30 +48,40 @@ insert fold: "%% fold %%"
 # archive plug in commands
 archive all: key(alt-a)
 
+# templater commands
+insert template: key(alt-e)
 
-
+# tags
+tag primary: "#meta/primary "
+tag code:    "#code "
+tag linux:   "#os/linux "
+tag windows: "#os/windows "
 
 # templates
-template note top: 
+template links: """`= this.links`\n"""
+template front links: user.insert_between('links: "Links: [[', ']]" ')
+template tags: """Tags: \n"""
+template sources: """`= this.sources`\n"""
+template front sources: user.insert_between('sources: "Sources: "')
+template front matter:
     """
     ---
     description: 
-    ---
-
-    Tags: 
-    Links: [[Index]]
-    ___
+    links: "Links: [[Index]]"
+    ---\n
     """
+
+template note top: 
+    mimic("template front matter")
+    mimic("template tags")
+    mimic("template links")
+    auto_insert("___\n")
 
 template note bottom:
-    """
-    ___
-    Links: [[Index]]
-    """
+    auto_insert("___\n")
+    mimic("template links")
 
 template note bottom short:
-    """
-    ___
-    Tags: 
-    Links: [[Index]]
-    """
+    auto_insert("___\n")
+    mimic("template tags")
+    mimic("template links")

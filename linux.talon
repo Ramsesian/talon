@@ -33,17 +33,26 @@ tux open firefox: key(super-w)
 tux open files: key(super-f)
 tux open settings: key(super-s)
 
+# not key bound app runners
 tux open commandline:
     key(alt-f2)
     sleep(200ms)
 
-tux open tor:
+tux open code:  
     mimic("tux open commandline")
-    auto_insert("flatpak run com.github.micahflee.torbrowser-launcher\n")
+    auto_insert("code\n")
 
-tux open torrent:
+tux open discord:
     mimic("tux open commandline")
-    auto_insert("flatpak run org.qbittorrent.qBittorrent\n")
+    auto_insert("flatpak run com.discordapp.Discord\n")
+
+tux open obs:
+    mimic("tux open commandline")
+    auto_insert("flatpak run com.obsproject.Studio\n")
+
+tux open obsidian:
+    mimic("tux open commandline")
+    auto_insert("flatpak run md.obsidian.Obsidian\n")
 
 tux open office: 
     mimic("tux open commandline")
@@ -53,21 +62,17 @@ tux open study:
     mimic("tux open commandline")
     auto_insert("flatpak run net.ankiweb.Anki\n")
 
-tux open code:  
-    mimic("tux open commandline")
-    auto_insert("code\n")
-
-tux open obsidian:
-    mimic("tux open commandline")
-    auto_insert("flatpak run md.obsidian.Obsidian\n")
-
-tux open discord:
-    mimic("tux open commandline")
-    auto_insert("flatpak run com.discordapp.Discord\n")
-
 tux open telegram:
     mimic("tux open commandline")
     auto_insert("flatpak run org.telegram.desktop\n")
+
+tux open tor:
+    mimic("tux open commandline")
+    auto_insert("flatpak run com.github.micahflee.torbrowser-launcher\n")
+
+tux open torrent:
+    mimic("tux open commandline")
+    auto_insert("flatpak run org.qbittorrent.qBittorrent\n")
 
 # opens popular locations in code   
 code open assignment tracker:  
