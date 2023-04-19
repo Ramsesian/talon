@@ -7,7 +7,7 @@ app: Kgx
 # terminal shortcuts
 term clear: key(ctrl-l)
 term last: key(up enter)
-term copy: key(ctrl-shift-c)
+term yank: key(ctrl-shift-c)
 
 # movement commands
 path change: "cd "

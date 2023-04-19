@@ -35,3 +35,14 @@ dust match: " == "
 dust strict match: " === "
 dust <user.letter>: " {letter} "
 dust <user.symbol_key>: " {symbol_key} "
+
+# miscellaneous commands
+capitalize that:
+    mimic("before that")
+    mimic("select word")
+    mimic("title that")
+
+#test:   
+    #insert("test")
+    #c#user.engine_mimic("capitalize that")
+

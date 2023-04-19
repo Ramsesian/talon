@@ -1,28 +1,35 @@
 os: linux
 -
-keyboard switch: key(super-space)
-#TODO CHANGE FINISH FIXING THIS
-keyboard change input:
-    user.move_click(1757, 17)
-    sleep(200ms)
-    key(down:3 right down enter)
 
-tux search: key(super)
+# window movement commands
+tux move up: key(shift-super-up)
+tux move down: key(shift-super-down)
+tux rotate: key(super-o)
+
+# window focus commands
+tux up: key(ctrl-super-up)
+tux down: key(ctrl-super-down)
+tux focus <user.arrow_key>: key("super-{arrow_key}")
+tux focus max: key(super-m)
+tux full: key(f11)
+
+# shut down menu commands
 tux lock: key(super-escape)
 tux menu: user.move_click(1860, 12)
 tux shutdown:
     mimic("tux menu")
     sleep(200ms)
     key(down:9 right down:2)
-tux up: key(ctrl-super-up)
-tux down: key(ctrl-super-down)
-tux shift up: key(shift-super-up)
-tux shift down: key(shift-super-down)
-tux rotate: key(super-o)
 
-tux focus <user.arrow_key>: key("super-{arrow_key}")
-tux focus max: key(super-m)
-tux full: key(f11)
+# keyboard commands
+keyboard switch: key(super-space)
+keyboard change input:
+    user.move_click(1757, 17)
+    sleep(200ms)
+    key(down:3 right down enter)
+
+# miscellaneous system commands
+tux search: key(super)
 
 # app runners
 # alt-f2  opens the command runner
