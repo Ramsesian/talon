@@ -62,7 +62,7 @@ template links: """`= this.links`\n"""
 template front links: user.insert_between('links: "Links: [[', ']]" ')
 template tags: """Tags: \n"""
 template sources: """`= this.sources`\n"""
-template front sources: user.insert_between('sources: "Sources: "')
+template front sources: user.insert_between('sources: "Sources: ', '"')
 template front matter:
     """
     ---

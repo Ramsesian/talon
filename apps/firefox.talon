@@ -12,11 +12,8 @@ location bar new:
     mimic("address copy") 
     key(ctrl-t ctrl-v)
     
-location paste: 
-    browser.focus_address()
-    key(ctrl-v enter)
-
-location paste new: key(ctrl-l ctrl-v enter)
+location paste: key(ctrl-l ctrl-v enter) 
+location paste new: key(ctrl-t ctrl-v enter)
 location from selection: key(ctrl-c ctrl-l ctrl-v enter)
 location from selection new: key(ctrl-c ctrl-t ctrl-v enter)
 
