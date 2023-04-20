@@ -1,41 +1,13 @@
 app: Tor Browser
 -
 
-# url related
-search: key(ctrl:down l ctrl:up)
-(search new | tab new): key(ctrl-t)
-
 # address related
-address copy:
-    key(ctrl:down l ctrl:up)
-    edit.copy()
-    
-address bar new: 
-    mimic("address copy") 
-    mimic("search new")
-    edit.paste()
-    
-address paste: 
-    mimic("search")
-    edit.paste()
-    key(enter)
+address copy: key(ctrl:down l c ctrl:up)
+address bar new: key(ctrl:down l c t v ctrl:up)
+address paste: key(ctrl-t ctrl-v enter)
+address paste new: key(ctrl-t ctrl-v enter)
 
-address paste new:
-    key(ctrl-t)
-    edit.paste()
-    key(enter)
-
-# tap related
-tab clone:
-    mimic("address copy")
-    mimic("address paste new")
-
-tab last: key(ctrl-shift-tab)
-tab next: key(ctrl-tab)
-tab close: key(ctrl-w)
-
-go tab <number>: key("alt-{number}")
-
+# pirate bay
 go pirate: user.move_click(252, 138)
 pirate search: user.move_click(954, 520)
 pirate get magnet:

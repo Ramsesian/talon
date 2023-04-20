@@ -1,10 +1,6 @@
 app: firefox
 -
 
-# url related
-search: key(ctrl-l backspace)
-search new: app.tab_open()
-
 # URL related
 location yank: mimic("address copy")
 location bar: browser.focus_address()
@@ -17,22 +13,12 @@ location paste new: key(ctrl-t ctrl-v enter)
 location from selection: key(ctrl-c ctrl-l ctrl-v enter)
 location from selection new: key(ctrl-c ctrl-t ctrl-v enter)
 
-# tap related
-tab clone:
-    mimic("address copy")
-    mimic("location paste new")
-
-tab detach: 
-    mimic("address copy")
-    key(ctrl-w super-w)
-    sleep(1s)
-    key(ctrl-v enter)
 
 select element: key(ctrl-shift-c)
 
 # youtube related
 tube home: browser.go("https://youtube.com")
-tube home new: user.template("[ctrl-t]https://youtube.com[enter]")
+tube home new: user.template("[ctrl-t]https://youtube.com\n")
 tube search: user.move_click(933, 181)
 tube change user: 
     user.move_click(1864, 178)

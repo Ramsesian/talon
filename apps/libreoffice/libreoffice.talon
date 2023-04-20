@@ -91,7 +91,8 @@ go list[s]:
     user.go_format()
     user.tool_into(8)
 
-toggle unordered list: key(shift-f12)
+unordered switch: key(shift-f12)
+ordered switch: key(f12)
 
 go page style:
     user.go_format()

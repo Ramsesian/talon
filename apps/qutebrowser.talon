@@ -50,12 +50,10 @@ find next: "n"
 find last: "N"
 find cancel: key(escape)
 
-# miscellaneous commands
-pass <user.letter>: key("i {letter} escape")
 
 # YouTube related
-tube home: """oyou\n"""
-tube home new: """Oyou\n"""
+mark tube: """oyou\n"""
+mark tube new: """Oyou\n"""
 tube search: user.move_click(884, 123)
 tube change user:
     user.move_click(1850, 120)

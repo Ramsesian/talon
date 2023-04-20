@@ -23,12 +23,6 @@ insert unordered: "- "
 insert admonition: "> [!note]- "
 insert admonition important: "> [!important]- "
 
-# window manipulation
-tab last: key(ctrl-shift-tab)
-tab next: key(ctrl-tab)
-tab close: key(ctrl-w)
-tab new: key(ctrl-t)
- 
 # search
 find new: key(ctrl-f)
 find next: key(f3)
@@ -40,6 +34,7 @@ please: key(ctrl-p)
 left bar switch: user.template("[ctrl-p]toggle left s\n")
 right bar switch: user.template("[ctrl-p]toggle right\n")
 view switch: key(ctrl-e)
+go tab <number>: key("ctrl-{number}")
 
 # fold plug in commands
 fold all: key(alt-f)
