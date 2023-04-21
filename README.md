@@ -13,3 +13,10 @@ These are my talon user files. I use talon on Pop!_OS so some commands may or ma
 - term: terminal
 - yank: copy
 - location: URL
+
+**Miscellaneous Notes**
+- in key if there are for or more ctrl prefixed keys in a row then you can start to save room by holding down the control key, press the keys, then release the keys. For example:
+    - key(ctrl-a ctrl-b ctrl-c ctrl-d)
+    - key(ctrl:down a b c d ctrl:up)
+    - user.uni("$c[eabcd]")    - currently WIP
+    - Add some basic language support for .talon files (mimic, key, capture shortcuts)

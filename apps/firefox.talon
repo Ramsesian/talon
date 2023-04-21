@@ -4,10 +4,7 @@ app: firefox
 # URL related
 location yank: mimic("address copy")
 location bar: browser.focus_address()
-location bar new: 
-    mimic("address copy") 
-    key(ctrl-t ctrl-v)
-    
+location bar new: key(ctrl-l ctrl-c ctrl-t ctrl-v)
 location paste: key(ctrl-l ctrl-v enter) 
 location paste new: key(ctrl-t ctrl-v enter)
 location from selection: key(ctrl-c ctrl-l ctrl-v enter)
@@ -17,8 +14,8 @@ location from selection new: key(ctrl-c ctrl-t ctrl-v enter)
 select element: key(ctrl-shift-c)
 
 # youtube related
-tube home: browser.go("https://youtube.com")
-tube home new: user.template("[ctrl-t]https://youtube.com\n")
+mark tube: browser.go("https://youtube.com")
+mark tube new: user.template("[ctrl-t]https://youtube.com\n")
 tube search: user.move_click(933, 181)
 tube change user: 
     user.move_click(1864, 178)

@@ -2,6 +2,7 @@ app: Org.gnome.Nautilus
 -
 # movement commands
 go back: key(backspace)
+go into new: key(shift-enter)
 go into: 
     key(enter)
     sleep(200ms)
@@ -14,8 +15,6 @@ go into top:
 go into bottom: 
     key(end)
     mimic("go into")
-
-go into new: key(shift-enter)
 
 go [<number>] from bottom:
     amount = number or 1
@@ -32,16 +31,17 @@ depeek: key(left)
 
 # bookmarks
 mark home: key(alt-home)
-mark documents: user.template("~/Documents[enter]")
-mark downloads: user.template("~/Downloads[enter]")
-mark telegram:  user.template("~/Downloads/Telegram Desktop[enter]")
-mark music:     user.template("~/Music[enter]")
-mark pictures:  user.template("~/Pictures[enter]")
-mark videos:    user.template("~/Videos[enter]")
-mark trash:     user.template("trash:///[enter]")
-mark my stuff:  user.template("~/my-stuff[enter]")
-mark talon:     user.template("~/my-stuff/talon[enter]")
-mark web:       user.template("~/my-stuff/web[enter]")
+mark documents: """~/Documents\n"""
+mark downloads: """~/Downloads\n"""
+mark telegram:  """~/Downloads/Telegram Desktop\n"""
+mark music:     """~/Music\n"""
+mark pictures:  """~/Pictures\n"""
+mark videos:    """~/Videos\n"""
+mark watching:  """~/Videos/show+movie/z-watching/"""
+mark trash:     """trash:///\n"""
+mark my stuff:  """~/my-stuff\n"""
+mark talon:     """~/my-stuff/talon\n"""
+mark web:       """~/my-stuff/web\n"""
 
 # file commands
 folder new: key(shift-ctrl-n)

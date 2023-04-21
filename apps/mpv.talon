@@ -18,26 +18,26 @@ minute last: key(down)
 minute next: key(up)
 
 # playback
-audio delay lower: key(ctrl--)
+audio delay downer: key(ctrl--)
 audio delay upper: key(ctrl-+)
 mute switch: "m"
 
-speed lower: "["
+speed downer: "["
 speed upper: "]"
 
-contrast lower: "1"
+contrast downer: "1"
 contrast upper: "2"
 
-brightness lower: "3"
+brightness downer: "3"
 brightness upper: "4"
 
-gamma lower: "5"
+gamma downer: "5"
 gamma upper: "6"
 
-saturation lower: "7"
+saturation downer: "7"
 saturation upper: "8"
 
-volume lower: "9"
+volume downer: "9"
 volume upper: "0"
 
 zoom out: "w"
@@ -48,7 +48,7 @@ sub switch: "v"
 sub last: "J"
 sub next: "j"
 
-sub delay lower: "x"
+sub delay downer: "x"
 sub delay upper: "z"
 
 sub up: "r"

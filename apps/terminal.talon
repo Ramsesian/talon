@@ -39,7 +39,7 @@ git add: "git add "
 git push: """git push origin master\n"""
 git push force: "git push -f origin master"
 git rollback: "git reset --soft HEAD~"
-git commit: user.template('git commit -m ""[left]') 
+git commit: user.insert_between('git commit -m "', '"') 
 
 # package manager commands
 package upgrade: """sudo nala upgrade\n"""
