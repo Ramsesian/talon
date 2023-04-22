@@ -54,6 +54,9 @@ find cancel: key(escape)
 # YouTube related
 mark tube: """oyou\n"""
 mark tube new: """Oyou\n"""
+mark tube history: """ohttps://www.youtube.com/feed/history\n"""
+mark tube history new: """Ohttps://www.youtube.com/feed/history\n"""
+
 tube search: user.move_click(884, 123)
 tube change user:
     user.move_click(1850, 120)

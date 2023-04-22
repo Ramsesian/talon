@@ -3,6 +3,7 @@ app: obsidian
 
 # go related commands
 go settings: key(ctrl-,)
+go daily note: user.template("[ctrl-p]daily\n")
 
 # text manipulation
 text bold: key(ctrl-b)

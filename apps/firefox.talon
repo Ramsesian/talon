@@ -13,9 +13,13 @@ location from selection new: key(ctrl-c ctrl-t ctrl-v enter)
 
 select element: key(ctrl-shift-c)
 
-# youtube related
+# bookmarks
 mark tube: browser.go("https://youtube.com")
 mark tube new: user.template("[ctrl-t]https://youtube.com\n")
+mark tube history: user.template("https://www.youtube.com/feed/history\n")
+mark tube history new: user.template("[ctrl-t]https://www.youtube.com/feed/history\n")
+
+# youtube related
 tube search: user.move_click(933, 181)
 tube change user: 
     user.move_click(1864, 178)

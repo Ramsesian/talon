@@ -21,6 +21,10 @@ message edit:
     mouse_click(1)
     user.mouse_relative(20, 50)
 
+message yank:
+    mouse_click(1)
+    user.mouse_relative(20, 120)
+
 change user:
     mimic("go settings")
     user.mouse_relative(0, 170, 250, "False")
