@@ -14,8 +14,9 @@ go answer reset:
 
 go upload: user.move_click(804, 655)
 
-card change note: key(ctrl-shift-m)
-card change deck: key(ctrl-d)
-card delete: key(ctrl-delete)
+change note type: key(ctrl-shift-m)
+change note deck: key(ctrl-d)
+(delete note | card delete): key(ctrl-delete)
 
+move: "3"
 next: "4"

@@ -28,7 +28,6 @@ tab detach: "gD"
 tab switch: key(ctrl-tab)
 tab restore: "u"
 tab close: "d"
-go tab <number>: key("alt-{number}")
 
 # session related
 session save: ":w "
@@ -50,6 +49,8 @@ find next: "n"
 find last: "N"
 find cancel: key(escape)
 
+# miscellaneous commands
+pass <user.letter>: key("i {letter} escape")
 
 # YouTube related
 mark tube: """oyou\n"""
@@ -63,7 +64,8 @@ tube change user:
     user.mouse_relative(0, 230, 500)
 
 tube skip: user.move_click(1332, 784)
-tube max: key(i f escape)
+tube max: mimic("pass fine")
+# tube max: key(i f escape)
 tube min: key(escape space)
 tube like: user.move_click(822, 959) 
 tube channel: user.move_click(132, 958)

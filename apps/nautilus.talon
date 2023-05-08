@@ -32,12 +32,14 @@ depeek: key(left)
 # bookmarks
 mark home: key(alt-home)
 mark documents: """~/Documents\n"""
+mark obsidian:  """~/Documents/obsidian/General\n"""
 mark downloads: """~/Downloads\n"""
 mark telegram:  """~/Downloads/Telegram Desktop\n"""
 mark music:     """~/Music\n"""
 mark pictures:  """~/Pictures\n"""
 mark videos:    """~/Videos\n"""
-mark watching:  """~/Videos/show+movie/z-watching/"""
+mark anime:     """~/Videos/show+movie/anime\n"""
+mark watching:  """~/Videos/show+movie/z-watching\n"""
 mark trash:     """trash:///\n"""
 mark my stuff:  """~/my-stuff\n"""
 mark talon:     """~/my-stuff/talon\n"""

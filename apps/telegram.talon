@@ -4,11 +4,11 @@ go saved: user.move_click(273, 181)
 go settings: user.move_click(44, 91)
 
 # deletes selected messages
-message confirm delete: 
+confirm delete: 
     sleep(300ms)
     key(enter)
 
-message selection delete:
+selection delete:
     key(delete)
     mimic("message confirm delete")
 

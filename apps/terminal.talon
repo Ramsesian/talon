@@ -21,15 +21,19 @@ mark talon home: """cd ~/.talon/user\n"""
 mark talon user: """cd ~/.talon/user/my_custom\n"""
 mark documents:  """cd ~/Documents\n"""
 mark obsidian:   """cd ~/Documents/obsidian/General\n"""
+mark downloads:  """cd ~/Downloads\n"""
+mark speed read:  """cd ~/Downloads/speedread\n"""
 mark my stuff:   """cd ~/my-stuff\n"""
 mark web:        """cd ~/my-stuff/web\n"""
 
 # common commands
 touch: "touch "
-vim: "vim "
+edit: "vim "
+cat: "cat "
 nah no: "nano "
 which: "which "
 ch mod: "chmod "
+ncdu: """ncdu\n"""
 
 # git commands
 git init: "git init"
@@ -40,12 +44,14 @@ git push: """git push origin master\n"""
 git push force: "git push -f origin master"
 git rollback: "git reset --soft HEAD~"
 git commit: user.insert_between('git commit -m "', '"') 
+git fetch: """git fetch\n"""
 
 # package manager commands
 package upgrade: """sudo nala upgrade\n"""
 
 # apack
 a pack: "apack "
+a unpack: "aunpack "
 
 # flatpak commands
 flatpak list: """flatpak list\n"""

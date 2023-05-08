@@ -10,6 +10,7 @@ text bold: key(ctrl-b)
 text italic: key(ctrl-i)
 
 # various note insertions
+insert checkbox: "- [ ] "
 insert comment: user.insert_between('%% ', ' %%')
 insert heading <number>: key("#:{number} space")
 insert line: "___"
@@ -19,8 +20,9 @@ insert location: key("right ( ctrl-v )")
 insert ordered: "1. "
 insert unordered: "- "
 
-insert admonition: "> [!note]- "
-insert admonition important: "> [!important]- "
+callout note: "> [!note]- "
+callout important: "> [!important]- "
+callout info: "> [!info]- "
 
 # search
 find new: key(ctrl-f)
@@ -45,8 +47,10 @@ archive all: key(alt-a)
 # templater commands
 insert template: key(alt-e)
 
+# dataview commands
+insert inline: user.insert_between("`= ", "`")
+
 # tags
-tag primary: "#meta/primary "
 tag code:    "#code "
 tag linux:   "#os/linux "
 tag windows: "#os/windows "
