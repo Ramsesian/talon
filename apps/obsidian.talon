@@ -48,7 +48,9 @@ archive all: key(alt-a)
 insert template: key(alt-e)
 
 # dataview commands
-insert inline: user.insert_between("`= ", "`")
+data inline: user.insert_between("`= ", "`")
+data block: "```dataview"
+data index: "`= [[Index]]"
 
 # tags
 tag code:    "#code "
@@ -66,6 +68,8 @@ template front matter:
     ---
     description: 
     links: "Links: [[Index]]"
+    moc: true
+    inIndex: true
     ---\n
     """
 
@@ -76,8 +80,12 @@ template note top:
     auto_insert("___\n")
 
 template note bottom:
-    auto_insert("___\n")
-    mimic("template links")
+    """
+    ___
+    ```dataview
+    LIST
+    FROM outgoing([[]])
+    """
 
 template note bottom short:
     auto_insert("___\n")

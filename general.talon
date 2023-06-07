@@ -31,6 +31,7 @@ symbol long dash: "—"
 dust line: key(enter:2 up)
 dust fat arrow: " => "
 dust arrow: " -> "
+dust not match: " != "{}
 dust match: " == "
 dust strict match: " === "
 dust <user.letter>: " {letter} "

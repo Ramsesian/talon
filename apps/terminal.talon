@@ -48,6 +48,7 @@ git fetch: """git fetch\n"""
 
 # package manager commands
 package upgrade: """sudo nala upgrade\n"""
+package install: "sudo nala install "
 
 # apack
 a pack: "apack "
