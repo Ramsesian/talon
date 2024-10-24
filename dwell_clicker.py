@@ -120,7 +120,7 @@ class DwellClick:
                     continue
             
             # If continual clicking is true then allow the rectangle to be clicked again without leaving the rectangle
-            if settings["continual_clicking"]: rectangle["active"] = False
+            if settings["continual_clicking"]: rectangle["clicked"] = False
             
             # Resets the hover timer
             rectangle["hover_timer"] = None 
@@ -136,7 +136,7 @@ class DwellClick:
 
             "hover_timer": None,
             "hover_duration": settings["hover_duration"],
-            "active": False,
+            "clicked": False,
 
             "rect_style": settings["rect_style"],
             "text": settings["text"],
@@ -234,8 +234,8 @@ class DwellClick:
             
             # Check if mouse is inside the rectangle. If it is call 
             if rectangle["zone"].contains(mouse):
-                if rectangle["active"]: continue
-                rectangle["active"] = True
+                if rectangle["clicked"]: continue
+                rectangle["clicked"] = True
 
                 # Prints the contents of a rectangle's log setting if any
                 if rectangle["log"]: print(f"{key}: {rectangle['log']}")
@@ -245,7 +245,7 @@ class DwellClick:
                 continue
             
             #If the mouse is moved off a mouse it's timer resets not letting the action execute
-            rectangle["active"] = False  # Mark as not active
+            rectangle["clicked"] = False  # Mark as not active
             if rectangle["hover_timer"]:
                 cron.cancel(rectangle["hover_timer"])
                 rectangle["hover_timer"] = None  # Reset the hover timer
