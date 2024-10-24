@@ -45,6 +45,8 @@ Ordered by priority.
     - Add a `toggle` option that accepts a boolean.
     - Add the `toggle_from` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle can show on. `toggle_from` is layout it'll switch back to and when the rectangle is considered toggled off. Add the layouts `toggle_from` to the layouts rect will show up on just in case.
     - Add the `toggle_to` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle switches to. Add `toggle_to` layouts to the layouts rect will show up on and switch to. `toggle_to` are the layouts that'll be switched to when toggled on and the layouts in which the rectangle will be considered toggle on.
+- Change comparisons to use `==` over `is` where applicable
+- Change `rectangle["active]` to `rectangle["clicked"]` to make more sense semantically
 
 
 ## Game Specific Support
