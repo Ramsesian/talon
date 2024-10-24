@@ -2,9 +2,8 @@
 
 ## General
 Ordered by priority.
+
 ##### High
-- Create a git repo and start commiting when you finish these items.
-- Add comments.
 - Add errors and error handling
 - Add a delay input. When you input a list of inputs this delay will serve to delay one input from the next. Perhaps I can do that by making a recursive function:
     - I create a function inside of action()
