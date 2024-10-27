@@ -22,18 +22,10 @@ class DwellClick:
         # Default styles for rectangle and text. 
         # I have this here so that I can pass in a reference when possible to speed things up.
         self.rect_style = {
-            "color": "00ff007f",  
-            "stroke_width": 2,
-            "style": Paint.Style.STROKE
+
         }
 
-        self.text_style = {
-            "color": "fff",  
-            "stroke_width": 18,
-            "style": Paint.Style.FILL
-        }
-
-    def rect_settings(self, settings: dict) -> dict:
+    def rect_settings(self, settings: dict, layouts: dict) -> dict:
         """
         Handles the optional inputs for add_rect()
         
@@ -48,38 +40,64 @@ class DwellClick:
         export = {
             "hover_duration": "250ms", 
             "continual_clicking": False,
-            "text": None,
-            "text_style": self.text_style,
             "rect_style": self.rect_style,
-            "invisible": False,
-            "log": None
+            "log": None,
+            
+            "text_style": [{
+                "display": None, # or the default layouts
+                "msg": None,     # the box's displayed text
+                "textsize": 16,
+
+                "color": "fff",  
+                "stroke_width": 18,
+                "style": Paint.Style.FILL
+            }],
+
+            "rect_style": [{
+                "display": None, # or the default layouts
+                "color": "00ff007f",  
+                "stroke_width": 2,
+                "style": Paint.Style.STROKE,
+                "invisible": False
+            }]
         }
 
         # If the option is passed in then assign it to export
-        for option in ("hover_duration", "continual_clicking", "text", "invisible", "log"):
+        for option in ("hover_duration", "continual_clicking", "invisible", "log"):
             if option in settings: export[option] = settings[option]
 
-        # Assigns the style options
-        # If no style options are present for text/rect then use the reference instead of duplicating data
-        # TODO CHANGE THIS. THIS IS DISGUSTING
-        for style in ("text", "rect"):
-            possible_style_options = (f"{style}_color", f"{style}_stroke_width", f"{style}_style", f"text_textsize")
-            
-            # gets all style options that match for the style block (rect or text). Skips if nothing
-            included_style_options = [x for x in possible_style_options if x in settings]
-            if len(included_style_options) == 0: continue
-            
-            # Copies the default style block (self.rect_style or self.text_style) and overwrites the reference in export
-            export[f"{style}_style"] = getattr(self, f"{style}_style").copy()
+        # Handles how style blocks are assigned to export
+        def handle_style_block(style_blocks: list[dict], export_key: str) -> None:
+            used_displays = [layouts] # makes sure no duplicates layouts as those simply won't show
+            for i, style in enumerate(style_blocks):
+                # the first input modifies the default
+                if i == 0: export[export_key][0].update(style); continue
 
-            # Cuts off the rect_/text_ identifier in the possible_style_options and then assigns it to export
-            for x in included_style_options:
-                cutoff = len(style) + 1
-                export[f"{style}_style"][x[cutoff:]] = settings[x]
+                # further style options are appended to text.
+                # further style options must have a display and can't have a duplicate display or it won't work
+                if "display" not in style: print("Error: missing display")
+                if style["display"] in used_displays: print("Error: display already set")
+
+                # style options fill in missing pieces before appending them to the list of styles
+                new_style = export[export_key][0].copy()
+                new_style.update(style)
+                export[export_key].append(new_style)
+                used_displays.append(style["display"])
+                
+
+        # Handles text styling
+        if "text" in settings: 
+            text = settings["text"]
+            # Most of the time using the default text is enough so this allows the shortcut
+            if isinstance(text, str): export["text_style"][0]["msg"] = text
+            # otherwise if its a list then handle as normal
+            else: handle_style_block(text, "text_style")
+
+        # Handles rectangle styling
+        if "rect" in settings:
+            handle_style_block(settings["rect"], "rect_style")
 
         return export
-
-
 
     def add_rect(self, layouts: set[str] | None, name:str, pos: tuple[int, int], size: tuple[int, int], inputs: list[int | str | set[str] | tuple[int, int] | Callable[[], None]], settings: dict={}) -> None:
         """
@@ -96,7 +114,7 @@ class DwellClick:
         Settings: optional settings handled by rect_settings()
         """
 
-        settings = self.rect_settings(settings)
+        settings = self.rect_settings(settings, layouts)
 
         def action() -> None:
             """
@@ -117,11 +135,10 @@ class DwellClick:
                     # If so then "move back" along history otherwise add the layout to history
                     if len(self.history) != 1 and self.history[-2] == x: self.history.pop(-1)     
                     else: self.history.append(x)
-                    continue
             
             # If continual clicking is true then allow the rectangle to be clicked again without leaving the rectangle
             if settings["continual_clicking"]: rectangle["clicked"] = False
-            
+
             # Resets the hover timer
             rectangle["hover_timer"] = None 
 
@@ -139,10 +156,8 @@ class DwellClick:
             "clicked": False,
 
             "rect_style": settings["rect_style"],
-            "text": settings["text"],
             "text_style": settings["text_style"],
 
-            "invisible": settings["invisible"],
             "log": settings["log"]
         }
 
@@ -151,25 +166,45 @@ class DwellClick:
 
     def matching_layout(self, layout: set[str]) -> bool:
         """Checks to see if any of the set of layouts matches a layout in the current layout"""
-        return None is layout or not layout.isdisjoint(self.active_layouts) 
+        return layout is None or not layout.isdisjoint(self.active_layouts) 
 
-    def apply_paint_settings(self, paint: object, settings: dict) -> None:
+    def find_active_style(self, styles: list[dict]) -> dict:
+        """
+        Returns the active style block from a list of style blocks.
+        The function determines the active one by listing over a reversed list of layouts and returns the first one that matches the active layout
+        """
+
+
+        if len(styles) == 1: return styles[0]
+        
+        # Returns a list of
+        layouts = [x["display"] for x in styles]
+
+        # Loops over the list of displays in reverse because I'm thinking that everything after the first is a modified overide of the first
+        for i, style_display in enumerate(reversed(layouts), 1):
+            if self.matching_layout(style_display): return styles[-i]
+        
+        return styles[0]
+
+
+    def apply_paint_settings(self, paint: object, style_block: dict) -> None:
         """applies paint styling from a provided dict"""
-        paint.color = settings["color"]
-        paint.stroke_width = settings["stroke_width"]
-        paint.style = settings["style"]
+
+        paint.color = style_block["color"]
+        paint.stroke_width = style_block["stroke_width"]
+        paint.style = style_block["style"]
         
         #paint.textsize = getattr(settings, "textsize", 16)
         if "textsize" in settings: paint.textsize = settings["textsize"]
         
 
-    def centered_text(self, paint: object, rect: dict) -> tuple[str, int, int]:
+    def centered_text(self, paint: object, zone: object, text: str) -> tuple[str, int, int]:
         """Calculates the starting coordinates of a length of text to be centered inside the provided rectangle."""
-        text_width = paint.measure_text(rect["text"])[0]
+        text_width = paint.measure_text(text)[0]
         text_height = paint.textsize    
 
-        rect_center_x = rect["zone"].x + (rect["zone"].width - text_width) / 2
-        rect_center_y = rect["zone"].y + (rect["zone"].height + text_height) / 2
+        rect_center_x = zone.x + (zone.width - text_width) / 2
+        rect_center_y = zone.y + (zone.height + text_height) / 2
 
         return (rect_center_x, rect_center_y) 
         
@@ -205,17 +240,21 @@ class DwellClick:
         # Draws each rectangle added
         for rect in self.rectangles.values():
             if not self.matching_layout(rect["layouts"]): continue # only renders rectangles with matching layouts
-            if rect["invisible"]: continue                      
 
             # if a rectangle or text uses a different appearance all future boxes drawn will share the same settings
             # that's why you have to set it each time before you draw just to double check
-            self.apply_paint_settings(paint, rect["rect_style"])
-            canvas.draw_rect(rect["zone"])
+
+            rect_style = self.find_active_style(rect["rect_style"])
+            if not rect_style["invisible"]: # allow invisible rectangles to skip being drawn   
+                self.apply_paint_settings(paint, self.find_active_style(rect["rect_style"]))
+                canvas.draw_rect(rect["zone"])
 
             # draws the text
-            if not rect["text"]: continue
-            self.apply_paint_settings(paint, rect["text_style"])
-            canvas.draw_text(rect["text"], *self.centered_text(paint, rect))
+            text_style = self.find_active_style(rect["text_style"])
+            if not text_style["msg"]: continue
+
+            self.apply_paint_settings(paint, text_style)
+            canvas.draw_text(text_style["msg"], *self.centered_text(paint, rect["zone"], text_style["msg"]))
             
 
         self.mcanvas.freeze()
@@ -283,6 +322,7 @@ class DwellClick:
 
 
 def slay_the_spire():
+        
         box = DwellClick({"combat"})
 
         slow = {"hover_duration": "500ms"}
@@ -316,7 +356,6 @@ def website_scroll(scroll_distance):
     settings = {"continual_clicking":True, "invisible": True}
     box.add_rect({"scroll"}, "scroll_up", (0, 0), (1920, 200), [(0, -1 * scroll_distance)], settings)
     box.add_rect({"scroll"}, "scroll_down", (0, 1080 - 350), (1920, 350), [(0, scroll_distance)], settings)
-    # add box that toggles cursor visibility
     box.show()
     ctrl.cursor_visible(False)
 
@@ -327,9 +366,7 @@ def inverted_fate():
     box.add_rect({"comic"}, "back", (0, 0), (520, 1080), ["left"], {**settings, "text": "left"})
     box.add_rect({"comic"}, "next_right", (1400, 0), (520, 1080), ["right"], {**settings, "text": "right"})
     box.add_rect({"comic"}, "next_bottom", (620, 810), (680, 260), ["right"], {**settings, "text": "right"})
-    # add box that toggles cursor visibility
     box.show()
-    #ctrl.cursor_visible(False)
 
 def vampire_survivors():
     box = DwellClick({"combat"})
@@ -342,10 +379,28 @@ def vampire_survivors():
     height = 100
     spacing = 50 + height
 
-    box.add_rect({"combat"}, "reset_cursor ", (1790, 960              ), (100, height), [move_center ], {"text": "Go Center"    })
-    box.add_rect({"combat"}, "stop_drag    ", (1790, 960 - spacing    ), (100, height), [0           ], {"text": "Stop Dragging"})
-    box.add_rect({"combat"}, "level_up     ", (1790, 960 - spacing * 2), (100, height), [{"level_up"}], {"text": "Level Up"     })
-    box.add_rect({"combat"}, "reward_accept", (1790, 960 - spacing * 3), (100, height), [{"done"}    ], {"text": "Accept Reward"})
+
+    accept_reward = [
+        {
+            "msg": "Accept Reward"},
+        {
+            "msg": "Back", 
+            "display": {"done"}
+        }
+    ]
+
+    appearance = [
+        {},
+        {
+            "display": {"level_up"},
+            "color": "red"
+        }
+    ]
+
+    box.add_rect({"combat"}, "reset_cursor ", (1790, 960                      ), (100, height), [move_center ], {"text": "Go Center"    })
+    box.add_rect({"combat"}, "stop_drag    ", (1790, 960 - spacing            ), (100, height), [0           ], {"text": "Stop Dragging"})
+    box.add_rect({"combat", "level_up"}, "level_up     ", (1790, 960 - spacing * 2        ), (100, height), [{"level_up"}], {"text": "Level Up", "rect": appearance},)
+    box.add_rect({"combat", "done"}, "reward_accept", (1790, 960 - spacing * 3), (100, height), [{"done"}    ], {"text": accept_reward})
     
     reward_hover = {"hover_duration": "500ms"}
     box.add_rect({"done"    }, "done ", (820, 830), (280, 80 ), [0, {"combat"}], reward_hover)
@@ -360,7 +415,7 @@ def vampire_survivors():
 #website_scroll(50) #ao3
 #website_scroll(300) #pinterest
 #inverted_fate()
-slay_the_spire()
+#slay_the_spire()
 #vampire_survivors()
 
 mouse_pos = ctrl.mouse_pos()

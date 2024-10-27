@@ -34,19 +34,18 @@ Ordered by priority.
 - Add a background fill color option to rect
 - Have the appearance settings be in one big dict that you pass as a single option. 
     - Each one now accepts a display setting. If the display setting contains anything then the settings inside that appearance block will only show if that display matches. For example if you put in a set of layouts the appearance might change while you're in those layouts. 
-    - Perhaps a new `type` option if necessary. For example text has the unique `text` option so that isn't necessary for text, but for rect it might need a type `rect` option because it doesn't have any identifiable options so far.
     - If options are left out of appearance blocks that contain a display setting have them try to fill in the gaps with settings from the normal appearance block. If the normal appearance block doesn't containt anything then take settings from the box/text global default.
     - Have `invisible` appear in the rect appearance block.
     - Probably make a function that accepts two dictionaries. 
         - If the second dictionary is empty then return the first. 
         - If the second dictionary isn't empty then return a new combined dictionary where the 2nd dictionary is placed over the 1st
         - If the second dictionary has keys that aren't in the first then return an error.
+    - Have a function that gets the applicable display block
+    - Allow you to change the default appearance blocks
 - Add a toggleable setting that will move between the last layout and the layout change:
     - Add a `toggle` option that accepts a boolean.
     - Add the `toggle_from` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle can show on. `toggle_from` is layout it'll switch back to and when the rectangle is considered toggled off. Add the layouts `toggle_from` to the layouts rect will show up on just in case.
     - Add the `toggle_to` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle switches to. Add `toggle_to` layouts to the layouts rect will show up on and switch to. `toggle_to` are the layouts that'll be switched to when toggled on and the layouts in which the rectangle will be considered toggle on.
-- Change comparisons to use `==` over `is` where applicable
-
 
 ## Game Specific Support
 ##### Slay the spire
