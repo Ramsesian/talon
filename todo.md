@@ -31,23 +31,18 @@ Ordered by priority.
 - The `dict.get(key, default)` method can return a default value if the item doesn't exist. You can probably use that to overhaul the text and rect presets. You could work it into the assign paint thing too.
 - History property for going back or forward along the chain. If the next layout is different than the next in the array then remove all the ones after the next one
     - If no boxes are registered for the layout then either show a back button or a button to reset the layout to the default 
-- Add a background fill color option to rect
 - Have the appearance settings be in one big dict that you pass as a single option. 
-    - Each one now accepts a display setting. If the display setting contains anything then the settings inside that appearance block will only show if that display matches. For example if you put in a set of layouts the appearance might change while you're in those layouts. 
-    - If options are left out of appearance blocks that contain a display setting have them try to fill in the gaps with settings from the normal appearance block. If the normal appearance block doesn't containt anything then take settings from the box/text global default.
-    - Have `invisible` appear in the rect appearance block.
-    - Probably make a function that accepts two dictionaries. 
-        - If the second dictionary is empty then return the first. 
-        - If the second dictionary isn't empty then return a new combined dictionary where the 2nd dictionary is placed over the 1st
-        - If the second dictionary has keys that aren't in the first then return an error.
-    - Have a function that gets the applicable display block
     - Allow you to change the default appearance blocks
 - Add a toggleable setting that will move between the last layout and the layout change:
     - Add a `toggle` option that accepts a boolean.
     - Add the `toggle_from` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle can show on. `toggle_from` is layout it'll switch back to and when the rectangle is considered toggled off. Add the layouts `toggle_from` to the layouts rect will show up on just in case.
     - Add the `toggle_to` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle switches to. Add `toggle_to` layouts to the layouts rect will show up on and switch to. `toggle_to` are the layouts that'll be switched to when toggled on and the layouts in which the rectangle will be considered toggle on.
 
+
 ## Game Specific Support
+##### Scroll
+- Have a toggleable cursor button in the corner. It takes cordinates for it's location so it can be used in other games
+
 ##### Slay the spire
 - Add support for item selection and ending combat
 

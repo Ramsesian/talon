@@ -33,7 +33,6 @@ class DwellClick:
         continual_clicking: if true the rectangle will be clicked every hover_duration without needing the mouse to leave the rectangle
         text (str): the text displayed inside the rectangle
         text/rect_style: see possible_style_options for input syntax and see self.rect_style and self.text_style for what it should look like
-        invisible: if true the rectangle won't be drawn
         log (str): prints the text to the terminal every time check_hover() is run.
         """
 
@@ -48,17 +47,17 @@ class DwellClick:
                 "msg": None,     # the box's displayed text
                 "textsize": 16,
 
-                "color": "fff",  
+                "color": "fff",
                 "stroke_width": 18,
                 "style": Paint.Style.FILL
             }],
 
             "rect_style": [{
                 "display": None, # or the default layouts
-                "color": "00ff007f",  
+                "color": "00ff007f", # if None then border won't be drawn 
+                "bg_color": None,
                 "stroke_width": 2,
-                "style": Paint.Style.STROKE,
-                "invisible": False
+                "style": Paint.Style.STROKE
             }]
         }
 
@@ -146,6 +145,7 @@ class DwellClick:
             print(f"Error: Rectangle {name} already exists") 
             return
 
+        
         self.rectangles[name] = {
             "zone": Rect(pos[0] + 1920, pos[1], *size),
             "layouts": layouts,
@@ -160,6 +160,7 @@ class DwellClick:
 
             "log": settings["log"]
         }
+
 
     def matching_layout(self, layout: set[str]) -> bool:
         """Checks to see if any of the set of layouts matches a layout in the current layout"""
@@ -240,8 +241,22 @@ class DwellClick:
             # that's why you have to set it each time before you draw just to double check
 
             rect_style = self.find_active_style(rect["rect_style"])
-            if not rect_style["invisible"]: # allow invisible rectangles to skip being drawn   
-                self.apply_paint_settings(paint, self.find_active_style(rect["rect_style"]))
+            self.apply_paint_settings(paint, rect_style)
+
+            # sets the background color of rectangles
+            # must come before setting the border color so the border can properly overlap
+            if rect_style["bg_color"]:
+                # the style settings assume border color so I need to make a few tweaks before I draw it
+                paint.color = rect_style["bg_color"]
+                paint.style = paint.Style.FILL
+                canvas.draw_rect(rect["zone"])
+
+                # reset for the border color so I don't have to run apply_paint_settings again
+                paint.color = rect_style["color"]
+                paint.style = rect_style["style"]
+
+            # if border color is not None then draw it
+            if rect_style["color"]:
                 canvas.draw_rect(rect["zone"])
 
             # draws the text
@@ -251,7 +266,6 @@ class DwellClick:
             self.apply_paint_settings(paint, text_style)
             canvas.draw_text(text_style["msg"], *self.centered_text(paint, rect["zone"], text_style["msg"]))
             
-
         self.mcanvas.freeze()
         
 

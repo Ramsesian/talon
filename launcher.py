@@ -1,6 +1,10 @@
 from .dwell_clicker import *
 from talon import ctrl, ui
 
+
+# Should reset my cursor each time I save so I don't have to restart talon
+
+
 def slay_the_spire():
         
         box = DwellClick({"combat"})
@@ -33,9 +37,9 @@ def slay_the_spire():
 
 def website_scroll(scroll_distance):
     box = DwellClick({"scroll"})
-    settings = {"continual_clicking":True, "invisible": True}
-    box.add_rect({"scroll"}, "scroll_up", (0, 0), (1920, 200), [(0, -1 * scroll_distance)], settings)
-    box.add_rect({"scroll"}, "scroll_down", (0, 1080 - 350), (1920, 350), [(0, scroll_distance)], settings)
+    settings = {"continual_clicking":True, "rect":[{"invisible": True}]}
+    box.add_rect({"scroll"}, "scroll_up"  , (0, 0         ), (1920, 200), [(0, -scroll_distance)], settings)
+    box.add_rect({"scroll"}, "scroll_down", (0, 1080 - 350), (1920, 350), [(0,  scroll_distance)], settings)
     box.show()
     ctrl.cursor_visible(False)
 
@@ -70,10 +74,14 @@ def vampire_survivors():
     ]
 
     appearance = [
-        {},
+        {
+            "color": "00ff007f",
+            "bg_color": "red"
+        },
         {
             "display": {"level_up"},
-            "color": "red"
+            "color": "red",
+            "bg_color": "00ff007f"
         }
     ]
 
@@ -91,13 +99,13 @@ def vampire_survivors():
 
 
 ### GAMES
-
 #website_scroll(50) #ao3
 #website_scroll(300) #pinterest
 #inverted_fate()
 #slay_the_spire()
-#vampire_survivors()
+vampire_survivors()
 
 mouse_pos = ctrl.mouse_pos()
 print(f"Mouse position on monitor one: x: {mouse_pos[0]       }, y: {mouse_pos[1]}")
 print(f"Mouse position on monitor two: x: {mouse_pos[0] - 1920}, y: {mouse_pos[1]}")
+
