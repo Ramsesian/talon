@@ -15,7 +15,6 @@ Ordered by priority.
 - Auto offset the coords to fit the monitor. See how well ui.active_window().rect.left works to get the offset
 
 ##### Medium
-- Allow option to change `paint.textsize`. You can probably go ahead and update the `dict.get` at the same time too.
 - Have a default box setup that allows you to switch between games
     - Maybe have game switcher on the secondary screen so you won't accidentally hover over it
     - Probably have an option to toggle mouse visibility on the second monitor for ao3
@@ -28,7 +27,6 @@ Ordered by priority.
 
 ##### Low
 - Have it so that if you input negative coords it does an offset from the opposite side of the screen instead. For example `-50` would equal `screen_size - 50`
-- The `dict.get(key, default)` method can return a default value if the item doesn't exist. You can probably use that to overhaul the text and rect presets. You could work it into the assign paint thing too.
 - History property for going back or forward along the chain. If the next layout is different than the next in the array then remove all the ones after the next one
     - If no boxes are registered for the layout then either show a back button or a button to reset the layout to the default 
 - Have the appearance settings be in one big dict that you pass as a single option. 
@@ -50,3 +48,4 @@ Ordered by priority.
 - Sanctuary RPG
 - Omori
 - Chess.com
+- Anki

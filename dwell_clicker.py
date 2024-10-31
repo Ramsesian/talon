@@ -45,7 +45,7 @@ class DwellClick:
             "text_style": [{
                 "display": None, # or the default layouts
                 "msg": None,     # the box's displayed text
-                "textsize": 16,
+                #"textsize": 12,
 
                 "color": "fff",
                 "stroke_width": 18,
@@ -186,17 +186,13 @@ class DwellClick:
     def apply_paint_settings(self, paint: object, style_block: dict) -> None:
         """applies paint styling from a provided dict"""
 
-        paint.color = style_block["color"]
-        paint.stroke_width = style_block["stroke_width"]
-        paint.style = style_block["style"]
-        
-        #paint.textsize = getattr(settings, "textsize", 16)
-        if "textsize" in settings: paint.textsize = settings["textsize"]
-        
+        for style in [x for x in style_block if hasattr(paint, x) and x is not None]:
+            setattr(paint, style, style_block[style])        
 
     def centered_text(self, paint: object, zone: object, text: str) -> tuple[str, int, int]:
         """Calculates the starting coordinates of a length of text to be centered inside the provided rectangle."""
         text_width = paint.measure_text(text)[0]
+        
         text_height = paint.textsize    
 
         rect_center_x = zone.x + (zone.width - text_width) / 2
