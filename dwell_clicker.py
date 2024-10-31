@@ -5,10 +5,11 @@ from talon import Context, Module, actions, canvas, cron, ctrl, screen, settings
 from talon.skia import Paint, Rect
 from talon.types.point import Point2d
 from typing import Callable
+from .utils import *
 #from typing import tuple, list, set
 
 mod = Module()
-ctx = Context()
+ctx = Context() 
 
 
 class DwellClick:
@@ -180,28 +181,7 @@ class DwellClick:
         for i, style_display in enumerate(reversed(layouts), 1):
             if self.matching_layout(style_display): return styles[-i]
         
-        return styles[0]
-
-
-    def apply_paint_settings(self, paint: object, style_block: dict) -> None:
-        """applies paint styling from a provided dict"""
-
-        for style in [x for x in style_block if hasattr(paint, x) and x is not None]:
-            setattr(paint, style, style_block[style])        
-
-    def centered_text(self, paint: object, zone: object, text: str) -> tuple[str, int, int]:
-        """Calculates the starting coordinates of a length of text to be centered inside the provided rectangle."""
-        text_width = paint.measure_text(text)[0]
-        
-        text_height = paint.textsize    
-
-        rect_center_x = zone.x + (zone.width - text_width) / 2
-        rect_center_y = zone.y + (zone.height + text_height) / 2
-
-        return (rect_center_x, rect_center_y) 
-        
-        # Draw text at the calculated position
-        
+        return styles[0]     
 
     def show(self) -> None:
         """
@@ -215,8 +195,6 @@ class DwellClick:
         # Start tracking the mouse position and checking for hover
         cron.interval(f"100ms", self.check_hover)
         self.mcanvas.freeze()
-
-        
 
     def draw(self, canvas) -> None:
         """This function is responsible for drawing rectangles. 
@@ -237,7 +215,7 @@ class DwellClick:
             # that's why you have to set it each time before you draw just to double check
 
             rect_style = self.find_active_style(rect["rect_style"])
-            self.apply_paint_settings(paint, rect_style)
+            attr_from_dict(paint, rect_style)
 
             # sets the background color of rectangles
             # must come before setting the border color so the border can properly overlap
@@ -259,8 +237,8 @@ class DwellClick:
             text_style = self.find_active_style(rect["text_style"])
             if not text_style["msg"]: continue
 
-            self.apply_paint_settings(paint, text_style)
-            canvas.draw_text(text_style["msg"], *self.centered_text(paint, rect["zone"], text_style["msg"]))
+            attr_from_dict(paint, text_style)
+            canvas.draw_text(text_style["msg"], *centered_text(paint, rect["zone"], text_style["msg"]))
             
         self.mcanvas.freeze()
         
@@ -306,8 +284,6 @@ class DwellClick:
         if len(self.history) == 1: return
         self.history.pop(-1)  
         self.active_layouts = self.history[-1]
-
-
 
     def close(self) -> None:
         """Unregister the draw method and stop the cron jobs"""

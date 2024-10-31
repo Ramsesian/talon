@@ -1,4 +1,4 @@
-from .dwell_clicker import *
+from .dwell_clicker import DwellClick
 from talon import ctrl, ui
 
 
@@ -95,7 +95,7 @@ def vampire_survivors():
 #mangadex()
 #website_scroll(300) #pinterest
 #slay_the_spire()
-#vampire_survivors()
+vampire_survivors()
 
 
 mouse_pos = ctrl.mouse_pos()
