@@ -20,13 +20,8 @@ class DwellClick:
         self.active_layouts: set = default_layout
         self.history: list = [default_layout]
 
-        # Default styles for rectangle and text. 
-        # I have this here so that I can pass in a reference when possible to speed things up.
-        self.rect_style = {
 
-        }
-
-    def rect_settings(self, settings: dict, layouts: dict) -> dict:
+    def rect_settings(self, settings: dict, layouts: dict, name: str) -> dict:
         """
         Handles the optional inputs for add_rect()
         
@@ -40,7 +35,6 @@ class DwellClick:
         export = {
             "hover_duration": "250ms", 
             "continual_clicking": False,
-            "rect_style": self.rect_style,
             "log": None,
             
             "text_style": [{
@@ -75,8 +69,10 @@ class DwellClick:
 
                 # further style options are appended to text.
                 # further style options must have a display and can't have a duplicate display or it won't work
-                if "display" not in style: print("Error: missing display")
-                if style["display"] in used_displays: print("Error: display already set")
+                if "display" not in style: 
+                    raise ValueError(f"Error (rect: \"{name}\"): Style blocks missing display") 
+                if style["display"] in used_displays: 
+                    raise ValueError(f"Error (rect: \"{name}\"): Display already exists in rectangle's style blocks")
 
                 # style options fill in missing pieces before appending them to the list of styles
                 new_style = export[export_key][0].copy()
@@ -92,6 +88,7 @@ class DwellClick:
             if isinstance(text, str): export["text_style"][0]["msg"] = text
             # otherwise if its a list then handle as normal
             else: handle_style_block(text, "text_style")
+
 
         # Handles rectangle styling
         if "rect" in settings:
@@ -114,7 +111,7 @@ class DwellClick:
         Settings: optional settings handled by rect_settings()
         """
 
-        settings = self.rect_settings(settings, layouts)
+        settings = self.rect_settings(settings, layouts, name)
 
         def action() -> None:
             """
@@ -143,8 +140,7 @@ class DwellClick:
             rectangle["hover_timer"] = None 
 
         if name in self.rectangles: 
-            print(f"Error: Rectangle {name} already exists") 
-            return
+            raise ValueError(f"Error: Rectangle \"{name}\" already exists") 
 
         
         self.rectangles[name] = {

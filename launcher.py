@@ -11,17 +11,17 @@ def inverted_fate():
     box = DwellClick({"comic"})
     settings = {"hover_duration": "500ms", "text_textsize": 30}
     
-    box.add_rect({"comic"}, "back", (0, 0), (520, 1080), ["left"], {**settings, "text": "left"})
-    box.add_rect({"comic"}, "next_right ", (1400, 0), (520, 1080), ["right"], {**settings, "text": "right"})
-    box.add_rect({"comic"}, "next_bottom", (620, 810), (680, 260), ["right"], {**settings, "text": "right"})
+    box.add_rect({"comic"}, "back"       , (0   , 0  ), (520, 1080), ["left" ], {**settings, "text": "left" })
+    box.add_rect({"comic"}, "next_right ", (1400, 0  ), (520, 1080), ["right"], {**settings, "text": "right"})
+    box.add_rect({"comic"}, "next_bottom", (620 , 810), (680, 260 ), ["right"], {**settings, "text": "right"})
     box.show()
 
 def mangadex():
     box = DwellClick({"comic"})
     settings = {"hover_duration": "500ms", "text_textsize": 30}
     
-    box.add_rect({"comic"}, "back", (0, 0), (520, 1080), ["left"], {**settings, "text": "left"})
-    box.add_rect({"comic"}, "next_right ", (1400, 0), (520, 1080), ["right"], {**settings, "text": "right"})
+    box.add_rect({"comic"}, "back", (0   , 0), (520, 1080), ["left" ], {**settings, "text": "left" })
+    box.add_rect({"comic"}, "next", (1400, 0), (520, 1080), ["right"], {**settings, "text": "right"})
     box.show()
 
 def website_scroll(scroll_distance):
@@ -75,13 +75,15 @@ def vampire_survivors():
     size = (height, height)
 
 
-    box.add_rect({"combat"}, "reset_cursor ", (1790, 960              ), size, [move_center ], {"text": "Go Center"    })
-    box.add_rect({"combat"}, "stop_drag    ", (1790, 960 - spacing    ), size, [0           ], {"text": "Stop Dragging"})
-    box.add_rect({"combat"}, "level_up     ", (1790, 960 - spacing * 2), size, [{"level_up"}], {"text": "Level Up"},)
+
+
+    box.add_rect({"combat"}, "reset_cursor" , (1790, 960              ), size, [move_center ], {"text": "Go Center"    })
+    box.add_rect({"combat"}, "stop_drag"    , (1790, 960 - spacing    ), size, [0           ], {"text": "Stop Dragging"})
+    box.add_rect({"combat"}, "level_up"     , (1790, 960 - spacing * 2), size, [{"level_up"}], {"text": "Level Up"     })
     box.add_rect({"combat"}, "reward_accept", (1790, 960 - spacing * 3), size, [{"done"}    ], {"text": "Accept Reward"})
     
     reward_hover = {"hover_duration": "500ms"}
-    box.add_rect({"done"    }, "done ", (820, 830), (280, 80 ), [0, {"combat"}], reward_hover)
+    box.add_rect({"done"    }, "done" , (820, 830), (280, 80 ), [0, {"combat"}], reward_hover)
     box.add_rect({"level_up"}, "items", (660, 268), (600, 690), [0, {"combat"}], reward_hover)
 
     box.show()

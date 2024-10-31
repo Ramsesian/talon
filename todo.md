@@ -4,7 +4,6 @@
 Ordered by priority.
 
 ##### High
-- Add errors and error handling
 - Add a delay input. When you input a list of inputs this delay will serve to delay one input from the next. Perhaps I can do that by making a recursive function:
     - I create a function inside of action()
     - Each time I call that function I pass in an index.
