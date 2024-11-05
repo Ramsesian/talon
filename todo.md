@@ -23,9 +23,19 @@ Ordered by priority.
     - `row_count = Math.ceil(index / column_size)`
     - `column_count = index % column_size`
     - Returns two tuples in a list `[(x, y), (width, height)]` which you can unpack into `box.add_rect` with the `**` operator.
+    - Any inputs that have element or index in a string get those words replaced with the element or index respectively
 
 ##### Low
-- Have it so that if you input negative coords it does an offset from the opposite side of the screen instead. For example `-50` would equal `screen_size - 50`
+- Have it so `auto` fills the remaining screen instead of the height/width of the screen. For example:
+    - `y: 0` `height: "auto"` would equal `y: 0` `height: 1080`
+    - `y: 100` `height: "auto"` would equal `y: 100` `height: 980`
+    - `y: -100` `height: "auto"` would equal `y: 0` `height: 980`
+- Handle the offcase in which the only input is `["auto"]`
+- If "auto" is in a larger string it's auto filled and then the equation is calculated. For example: 
+    - `y: 100` `height: "auto - 100"` ->
+    - `y: 100` `height: "980 - 100"` ->
+    - `y: 100` `height: 880`
+    - Could be done by saying `auto = 980` and then `eval(auto - 100)`
 - History property for going back or forward along the chain. If the next layout is different than the next in the array then remove all the ones after the next one
     - If no boxes are registered for the layout then either show a back button or a button to reset the layout to the default 
 - Have the appearance settings be in one big dict that you pass as a single option. 

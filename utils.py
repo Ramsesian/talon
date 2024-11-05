@@ -13,5 +13,6 @@ def centered_text(paint: object, rect: object, text: str) -> tuple[int, int]:
 def attr_from_dict(obj: object, attr_dict: dict) -> None:
     """If attr_dict has a key of the same name as an attribute in obj then set that attribute to the value in attr_dict"""
 
-    for attr in [x for x in attr_dict if hasattr(obj, x) and x is not None]:
+    for attr in attr_dict:
+        if not hasattr(obj, attr) or attr_dict[attr] is None: continue
         setattr(obj, attr, attr_dict[attr])

@@ -96,12 +96,16 @@ class DwellClick:
 
         return export
 
-    def add_rect(self, layouts: set[str] | None, name:str, pos: tuple[int, int], size: tuple[int, int], inputs: list[int | str | set[str] | tuple[int, int] | Callable[[], None]], settings: dict={}) -> None:
+    def add_rect(self, layouts: set[str] | None, name:str, pos: list[int], size: list[int | str], inputs: list[int | str | set[str] | tuple[int, int] | Callable[[], None]], settings: dict={}) -> None:
         """
         Creates and stores rectangles
         Layouts: Rectangles will be drawn when their layout matches the current one. At least one rectangle should match the default layout in __init__
         Name: Name of the rectangle. If duplicately named rectangles exist an error will be thrown
-        pos and size: x,y and width x height. 
+        pos: the x and y of the box as ints. A negative value positions the box relative to the opposite end of the screen.
+        size: 
+            - Width and height as ints. 
+            - Use "auto" to equal the size of the screen. 
+            - If the second value is empty the height and width will be the same
         Inputs: passed into action() to be executed
             - int: accepts 0 and 1 for left and right mouse click
             - str: text entered will be run through actions.key
@@ -113,6 +117,8 @@ class DwellClick:
 
         settings = self.rect_settings(settings, layouts, name)
 
+
+
         def action() -> None:
             """
             Responsible for executing inputs. This function is run when hovered.
@@ -122,11 +128,11 @@ class DwellClick:
 
             # handles provided inputs
             for x in inputs:
-                if isinstance(x, str): actions.key(x); continue
-                if isinstance(x, int): ctrl.mouse_click(button=x); continue
-                if isinstance(x, tuple): actions.mouse_scroll(y=x[1]); continue
-                if callable(x): x(); continue
-                if isinstance(x, set): 
+                if isinstance(x, str  ): actions.key(x)
+                elif isinstance(x, int  ): ctrl.mouse_click(button=x)
+                elif isinstance(x, tuple): actions.mouse_scroll(y=x[1])
+                elif   callable(x       ): x()
+                elif isinstance(x, set  ): 
                     self.active_layouts = x # changes the current layout
                     # checks to see if you returned to the previous layout. 
                     # If so then "move back" along history otherwise add the layout to history
@@ -143,6 +149,28 @@ class DwellClick:
             raise ValueError(f"Error: Rectangle \"{name}\" already exists") 
 
         
+
+        # If provided a only one item then assume the item is a square
+        if len(size) == 1: size.append(size[0])
+
+        # If sizes are left as auto then fill the screen
+        if size[0] is "auto": size[0] = screen.main().width
+        if size[1] is "auto": size[1] = screen.main().height
+
+
+        # If the input is negative then have it start at the opposite end of the screen instead
+        # 1920/1080 (the end of the screen) is used as a starting point. 
+        # Pos is guaranteed to be negative so I don't need to subtract it
+        # Offset by the size otherwise if I do -1 then the box will be off the screen
+        
+        # Auto calculate the negatives for positive numbers for easy conversion
+        #print(f"{name}: ({-(1920 - size[0] - pos[0])}, {-(1080 - size[1] - pos[1])})")
+
+        if pos[0] < 0: pos[0] += 1920 - size[0]
+        if pos[1] < 0: pos[1] += 1080 - size[1]
+        
+        
+
         self.rectangles[name] = {
             "zone": Rect(pos[0] + 1920, pos[1], *size),
             "layouts": layouts,
@@ -168,7 +196,7 @@ class DwellClick:
         Returns the active style block from a list of style blocks.
         The function determines the active one by listing over a reversed list of layouts and returns the first one that matches the active layout
         """
-        if len(styles) == 1: return styles[0]
+        #if len(styles) == 1: return styles[0]
         
         # Returns a list of
         layouts = [x["display"] for x in styles]
