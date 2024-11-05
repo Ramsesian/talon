@@ -32,13 +32,11 @@ class DwellClick:
         continual_clicking: if true the rectangle will be clicked every hover_duration without needing the mouse to leave the rectangle
         text (str): the text displayed inside the rectangle
         text/rect_style: see possible_style_options for input syntax and see self.rect_style and self.text_style for what it should look like
-        log (str): prints the text to the terminal every time check_hover() is run.
         """
 
         export = {
             "hover_duration": "250ms", 
             "continual_clicking": False,
-            "log": None,
             
             "text_style": [{
                 "display": None, # or the default layouts
@@ -68,7 +66,7 @@ class DwellClick:
 
 
         # If the option is passed in then assign it to export
-        for option in ("hover_duration", "continual_clicking", "invisible", "log"):
+        for option in ("hover_duration", "continual_clicking", "invisible"):
             if option in settings: export[option] = settings[option]
 
         # Handles how style blocks are assigned to export
@@ -192,9 +190,7 @@ class DwellClick:
             "clicked": False,
 
             "rect_style": settings["rect_style"],
-            "text_style": settings["text_style"],
-
-            "log": settings["log"]
+            "text_style": settings["text_style"]
         }
 
 
@@ -293,9 +289,6 @@ class DwellClick:
             if rectangle["zone"].contains(mouse):
                 if rectangle["clicked"]: continue
                 rectangle["clicked"] = True
-
-                # Prints the contents of a rectangle's log setting if any
-                if rectangle["log"]: print(f"{key}: {rectangle['log']}")
 
                 # Simulates hovering by setting an action on a delay. 
                 rectangle["hover_timer"] = cron.after(rectangle["hover_duration"], rectangle["action"]) 
