@@ -13,12 +13,15 @@ ctx = Context()
 
 
 class DwellClick:
-    def __init__(self, default_layout: set[str]) -> None:
+    def __init__(self, default_layout: set[str] = {"default"}, default_rect_style: dict = {}, default_text_style: dict = {}) -> None:
         # Initialize rectangle storage, layouts, and history
         self.mcanvas = None
         self.rectangles: dict = {}
         self.active_layouts: set = default_layout
         self.history: list = [default_layout]
+
+        self.default_rect_style = default_rect_style
+        self.default_text_style = default_text_style
 
 
     def rect_settings(self, settings: dict, layouts: dict, name: str) -> dict:
@@ -55,6 +58,14 @@ class DwellClick:
                 "style": Paint.Style.STROKE
             }]
         }
+
+
+
+
+        # Sets the default style up if it exists            
+        export["rect_style"][0].update(self.default_rect_style)
+        export["text_style"][0].update(self.default_text_style)
+
 
         # If the option is passed in then assign it to export
         for option in ("hover_duration", "continual_clicking", "invisible", "log"):
@@ -154,8 +165,8 @@ class DwellClick:
         if len(size) == 1: size.append(size[0])
 
         # If sizes are left as auto then fill the screen
-        if size[0] is "auto": size[0] = screen.main().width
-        if size[1] is "auto": size[1] = screen.main().height
+        if size[0] == "auto": size[0] = screen.main().width
+        if size[1] == "auto": size[1] = screen.main().height
 
 
         # If the input is negative then have it start at the opposite end of the screen instead

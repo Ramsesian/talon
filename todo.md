@@ -38,8 +38,6 @@ Ordered by priority.
     - Could be done by saying `auto = 980` and then `eval(auto - 100)`
 - History property for going back or forward along the chain. If the next layout is different than the next in the array then remove all the ones after the next one
     - If no boxes are registered for the layout then either show a back button or a button to reset the layout to the default 
-- Have the appearance settings be in one big dict that you pass as a single option. 
-    - Allow you to change the default appearance blocks
 - Add a toggleable setting that will move between the last layout and the layout change:
     - Add a `toggle` option that accepts a boolean.
     - Add the `toggle_from` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle can show on. `toggle_from` is layout it'll switch back to and when the rectangle is considered toggled off. Add the layouts `toggle_from` to the layouts rect will show up on just in case.
