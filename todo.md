@@ -4,6 +4,7 @@
 Ordered by priority.
 
 ##### High
+- Add a default input as in do this input when not in any rectangler
 - Add a delay input. When you input a list of inputs this delay will serve to delay one input from the next. Perhaps I can do that by making a recursive function:
     - I create a function inside of action()
     - Each time I call that function I pass in an index.
@@ -38,10 +39,28 @@ Ordered by priority.
     - Could be done by saying `auto = 980` and then `eval(auto - 100)`
 - History property for going back or forward along the chain. If the next layout is different than the next in the array then remove all the ones after the next one
     - If no boxes are registered for the layout then either show a back button or a button to reset the layout to the default 
+    - Move the history update thing inside `add_rect.action` into it's own function
 - Add a toggleable setting that will move between the last layout and the layout change:
+    - You can set this up in a utility function
     - Add a `toggle` option that accepts a boolean.
     - Add the `toggle_from` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle can show on. `toggle_from` is layout it'll switch back to and when the rectangle is considered toggled off. Add the layouts `toggle_from` to the layouts rect will show up on just in case.
     - Add the `toggle_to` option that takes a set of layouts. If left on default it'll equal the layouts the rectangle switches to. Add `toggle_to` layouts to the layouts rect will show up on and switch to. `toggle_to` are the layouts that'll be switched to when toggled on and the layouts in which the rectangle will be considered toggle on.
+- I could possibly memoize style blocks: When I create a style_block on a rectangle:
+    1. I check if it exists in `self.style_blocks`
+    2. If it doesn't exist then add it to `self.style_blocks`
+    3. Save the index/reference of `self.style_blocks` to the rectangle instead
+- Managing style blocks
+    - Bring rectangles into their own class
+    - Keep style blocks in a list
+    - Create a function for getting values. 
+        - It's parameters are `rect_name: str, style_type: str, style_index: int, *property: str`.
+        - If the property doesn't exist at the index then take the value from the class default
+        - If the property is left blank then make a copy of the default object, update it with the current style_block, and return it.
+    - Create a function that finds the active style. It takes a `rect_name: str` and returns a partial of the getting values function with the `*property: str` left unfilled.
+
+
+
+Basically I would keep a self.styles and each time I add a style I check if it already exists in self.styles.
 
 
 ## Game Specific Support

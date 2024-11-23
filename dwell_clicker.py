@@ -198,21 +198,20 @@ class DwellClick:
         """Checks to see if any of the set of layouts matches a layout in the current layout"""
         return layout is None or not layout.isdisjoint(self.active_layouts) 
 
-    def find_active_style(self, styles: list[dict]) -> dict:
+    def find_active_style(self, style_blocks: list[dict]) -> dict:
         """
         Returns the active style block from a list of style blocks.
         The function determines the active one by listing over a reversed list of layouts and returns the first one that matches the active layout
         """
-        #if len(styles) == 1: return styles[0]
         
-        # Returns a list of
-        layouts = [x["display"] for x in styles]
+        # Returns a list of all displays in 
+        layouts = [x["display"] for x in style_blocks]
 
         # Loops over the list of displays in reverse because I'm thinking that everything after the first is a modified overide of the first
         for i, style_display in enumerate(reversed(layouts), 1):
-            if self.matching_layout(style_display): return styles[-i]
+            if self.matching_layout(style_display): return style_blocks[-i]
         
-        return styles[0]     
+        return style_blocks[0]     
 
     def show(self) -> None:
         """
@@ -246,22 +245,19 @@ class DwellClick:
             # that's why you have to set it each time before you draw just to double check
 
             rect_style = self.find_active_style(rect["rect_style"])
-            attr_from_dict(paint, rect_style)
 
             # sets the background color of rectangles
             # must come before setting the border color so the border can properly overlap
             if rect_style["bg_color"]:
+                attr_from_dict(paint, rect_style)
                 # the style settings assume border color so I need to make a few tweaks before I draw it
                 paint.color = rect_style["bg_color"]
                 paint.style = paint.Style.FILL
                 canvas.draw_rect(rect["zone"])
 
-                # reset for the border color so I don't have to run apply_paint_settings again
-                paint.color = rect_style["color"]
-                paint.style = rect_style["style"]
-
             # if border color is not None then draw it
             if rect_style["color"]:
+                attr_from_dict(paint, rect_style)
                 canvas.draw_rect(rect["zone"])
 
             # draws the text
@@ -285,7 +281,7 @@ class DwellClick:
         for key, rectangle in self.rectangles.items():
             if not self.matching_layout(rectangle["layouts"]): continue # prevents the mouse from activating rectangles that aren't on the matching layout
             
-            # Check if mouse is inside the rectangle. If it is call 
+            # Check if mouse is inside the rectangle. If it is call the action function stored in the rectangle.
             if rectangle["zone"].contains(mouse):
                 if rectangle["clicked"]: continue
                 rectangle["clicked"] = True
