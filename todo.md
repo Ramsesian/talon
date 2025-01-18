@@ -4,6 +4,7 @@
 Ordered by priority.
 
 ##### High
+- Add an option that toggles on an input. You could add it as a setting.
 - Add a default input as in do this input when not in any rectangler
 - Add a delay input. When you input a list of inputs this delay will serve to delay one input from the next. Perhaps I can do that by making a recursive function:
     - I create a function inside of action()
@@ -57,10 +58,15 @@ Ordered by priority.
         - If the property doesn't exist at the index then take the value from the class default
         - If the property is left blank then make a copy of the default object, update it with the current style_block, and return it.
     - Create a function that finds the active style. It takes a `rect_name: str` and returns a partial of the getting values function with the `*property: str` left unfilled.
+- Have the program do some checks so it every time you save it doesn't print half a dozen things:
+    - Detect which monitor you're on before printing the mouse position 
+    - Automatically show you the negative coordinates if they're within like 300-400 from the edge
+- Allow me to do addition with `"auto"` in the size setting
+    
 
 
 
-Basically I would keep a self.styles and each time I add a style I check if it already exists in self.styles.
+<!--Basically I would keep a self.styles and each time I add a style I check if it already exists in self.styles.-->
 
 
 ## Game Specific Support

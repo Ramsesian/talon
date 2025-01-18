@@ -6,6 +6,10 @@ from talon.skia import Paint, Rect
 from talon.types.point import Point2d
 from typing import Callable
 from .utils import *
+
+import os
+import subprocess
+
 #from typing import tuple, list, set
 
 mod = Module()
